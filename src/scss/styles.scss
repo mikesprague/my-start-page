@@ -1,0 +1,80 @@
+@import '~bootstrap/scss/bootstrap';
+@import './font-muli.scss';
+@import './font-roboto-slab.scss';
+
+* {
+  -moz-osx-font-smoothing: grayscale !important;
+  -webkit-font-smoothing: subpixel-antialiased !important;
+  text-rendering: optimizeLegibility !important;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  color: #fff !important;
+}
+
+html {
+  min-height: 100%;
+  position: relative;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+body {
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
+  background-size: cover;
+  color: #333;
+  font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+.app-name {
+  margin: 0 !important;
+}
+
+.date-time {
+  margin-top: 12%;
+}
+
+.time-container {
+  color: #fff;
+  font-size: 8rem;
+}
+
+.date-container {
+  color: #fff !important;
+  font-size: 2rem;
+  margin-top: -1rem;
+}
+
+.greeting-container {
+  font-size: 5rem;
+  color: #fff;
+}
+
+.navbar-inner {
+  background: transparent !important;
+}
+
+.footer {
+  bottom: 0;
+  // Set the fixed height of the footer here
+  height: 60px;
+  font-size: .8rem;
+  line-height: 20px; // Vertically center the text there
+  position: absolute;
+  width: 100%;
+}
+
+.content-icon {
+  font-size: 2rem;
+}
+
+a {
+  color: #aaa !important;
+}
