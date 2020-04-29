@@ -24,6 +24,7 @@ import {
   faUser,
   faHourglassHalf,
 } from '@fortawesome/pro-duotone-svg-icons';
+import { register } from 'register-service-worker';
 
 export function apiUrl () {
   if (window.location.origin.includes('-extension://')) {
@@ -65,3 +66,18 @@ export function initIcons() {
 export function handleError(error) {
   console.error(error);
 }
+
+export function initServiceWorker () {
+  register('/service-worker.js', {
+    updated(registration) {
+      console.log(`Updated to the latest version.\n${registration}`);
+      window.location.reload(true);
+    },
+    offline() {
+      console.info('No internet connection found. App is currently offline.');
+    },
+    error(error) {
+      console.error('Error during service worker registration:', error);
+    },
+  });
+};
