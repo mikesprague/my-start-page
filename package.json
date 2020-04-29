@@ -16,7 +16,9 @@
     "webpack:dev": "cross-env NODE_ENV=development webpack -d --colors --display minimal",
     "webpack:serve": "cross-env NODE_ENV=development webpack-dev-server --port 4444",
     "lambda:build": "netlify-lambda build ./src/functions",
-    "lambda:serve": "netlify-lambda serve ./src/functions --config ./webpack.functions.js"
+    "lambda:serve": "netlify-lambda serve ./src/functions --config ./webpack.functions.js",
+    "snyk-protect": "snyk protect",
+    "prepublish": "npm run snyk-protect"
   },
   "keywords": [],
   "repository": {
@@ -43,6 +45,7 @@
     "register-service-worker": "^1.7.1",
     "request-promise": "^4.2.5",
     "rss-parser": "^3.7.6",
+    "snyk": "^1.314.0",
     "tippy.js": "^6.2.3",
     "unsplash-js": "^6.0.0"
   },
@@ -171,5 +174,6 @@
       "all"
     ],
     "printWidth": 120
-  }
+  },
+  "snyk": true
 }
