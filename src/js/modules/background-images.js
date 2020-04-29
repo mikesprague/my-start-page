@@ -94,8 +94,6 @@ export const setImageAndMetaData = async () => {
   const {
     title,
     name,
-    description,
-    altDescription,
     imageLink,
     imageUrl,
     userLink,
@@ -108,13 +106,7 @@ export const setImageAndMetaData = async () => {
     if (name) {
       return name;
     }
-    if (description) {
-      return description;
-    }
-    if (altDescription) {
-      return altDescription;
-    }
-    return 'No description';
+    return 'No description available';
   };
   document.body.style.background = `url('${imageUrl}') no-repeat center center fixed`;
   document.body.style.backgroundSize = 'cover';
@@ -122,7 +114,9 @@ export const setImageAndMetaData = async () => {
   const bgMetadataEl = document.querySelector('.bg-metadata');
   bgMetadataEl.innerHTML = `
     <span class="text-muted">
-      <a class="" href="${imageLink}${linkSuffix}" target="_blank"><i class="fad fa-fw fa-image"></i> ${getImageTitle()}</a>
+      <a class="" href="${imageLink}${linkSuffix}" target="_blank">
+        <i class="fad fa-fw fa-image"></i> ${getImageTitle()}
+      </a>
       <br>
       <a href="${userLink}${linkSuffix}" target="_blank"><i class="fad fa-fw fa-user"></i> ${userName}</a>
       via
