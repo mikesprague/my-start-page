@@ -8,7 +8,7 @@
     "npm": ">= 6.x"
   },
   "scripts": {
-    "build": "npm run clean && npm run webpack",
+    "build": "npm run clean && npm run webpack && npm run lambda:build",
     "clean": "rm -rf ./public",
     "serve": "concurrently 'npm run webpack:serve' 'npm run lambda:serve' --names '📦 ,🖥 ' --prefix '[{name}] ' --kill-others",
     "test": "echo \"Error: no test specified\" && exit 1",
