@@ -25,6 +25,9 @@ import {
   faHourglassHalf,
 } from '@fortawesome/pro-duotone-svg-icons';
 import { register } from 'register-service-worker';
+import {
+  resetData,
+} from './data';
 
 export function apiUrl () {
   if (window.location.origin.includes('-extension://')) {
@@ -71,6 +74,7 @@ export function initServiceWorker () {
   register('/service-worker.js', {
     updated(registration) {
       console.log(`Updated to the latest version.\n${registration}`);
+      resetData();
       window.location.reload(true);
     },
     offline() {
