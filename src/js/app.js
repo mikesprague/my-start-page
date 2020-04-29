@@ -17,7 +17,7 @@ import {
 const initApp = () => {
   initServiceWorker();
   setImageAndMetaData();
-  initClock();
+  initClock(5);
   setGreeting();
   initIcons();
   initWeather();
