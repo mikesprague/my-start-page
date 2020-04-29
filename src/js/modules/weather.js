@@ -60,6 +60,18 @@ async function geolocationError(error) {
   console.error(error);
 }
 
+export function populateWeatherAndLocation(weatherAndLocationData) {
+  const { locationName } = weatherAndLocationData[0].location;
+  const locationEl = document.querySelector('.weather-location');
+  locationEl.textContent = locationName;
+  const { currently } = weatherAndLocationData[1].weather;
+  document.querySelector('.weather-temp').innerHTML = `${Math.round(currently.temperature)}&deg;`;
+  const weatherIconClass = getWeatherIcon(currently.icon);
+  const weatherIcon = document.querySelector('.weather-icon');
+  weatherIcon.removeAttribute('class');
+  weatherIcon.setAttribute('class', `${weatherIconClass} weather-icon`);
+}
+
 export async function getLocationNameAndWeather(position) {
   const lng = position.coords.longitude;
   const lat = position.coords.latitude;
@@ -84,17 +96,20 @@ export async function getLocationNameAndWeather(position) {
     setData('weatherData', weatherAndLocation);
     setData('weatherLastUpdated', dayjs());
   }
-  const { locationName } = weatherAndLocation[0].location;
-  const locationEl = document.querySelector('.weather-location');
-  locationEl.textContent = locationName;
-  const { currently } = weatherAndLocation[1].weather;
-  document.querySelector('.weather-temp').innerHTML = `${Math.round(currently.temperature)}&deg;`;
-  const weatherIconClass = getWeatherIcon(currently.icon);
-  const weatherIcon = document.querySelector('.weather-icon');
-  weatherIcon.removeAttribute('class');
-  weatherIcon.setAttribute('class', `${weatherIconClass} weather-icon`);
+  populateWeatherAndLocation(weatherAndLocation);
 }
 
 export async function initWeather() {
-  await navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, console.error);
+  const lastUpdated = getData('weatherLastUpdated');
+  const weatherAndLocation = getData('weatherData');
+  if (lastUpdated && weatherAndLocation) {
+    const nextUpdateTime = dayjs(lastUpdated).add(20, 'minute');
+    if (dayjs().isAfter(nextUpdateTime)) {
+      navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, console.error);
+    } else {
+      populateWeatherAndLocation(weatherAndLocation);
+    }
+  } else {
+    navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, console.error);
+  }
 }
