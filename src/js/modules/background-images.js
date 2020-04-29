@@ -65,7 +65,7 @@ export async function getUnsplashImage() {
   let apiData = null;
   if (lastUpdated) {
     const nextUpdateTime = dayjs(lastUpdated).add(60, 'minute');
-    if (dayjs(lastUpdated).isAfter(nextUpdateTime) || lastUpdated === null) {
+    if (dayjs().isAfter(nextUpdateTime) || lastUpdated === null) {
       apiData = await getUnsplashImagesData();
       apiData = normalizeImageData(apiData);
       clearData('bgData');
