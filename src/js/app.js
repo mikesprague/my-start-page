@@ -11,6 +11,9 @@ import {
   initServiceWorker,
 } from './modules/helpers';
 import {
+  initDesignQuote,
+} from './modules/quotes';
+import {
   initWeather,
 } from './modules/weather';
 
@@ -20,6 +23,7 @@ const initApp = () => {
   initClock(5);
   setGreeting();
   initIcons();
+  initDesignQuote();
   initWeather();
 };
 
