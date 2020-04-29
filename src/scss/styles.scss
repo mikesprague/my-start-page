@@ -60,9 +60,13 @@ body {
 }
 
 .quote-container {
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   font-weight: 400;
   margin-top: 4.5em;
+
+  p {
+    padding: 0 4rem;
+  }
 }
 
 .quote-author {

@@ -20,10 +20,13 @@ const normalizeQuoteData = (apiData) => {
   const returnData = apiData.map((quoteData) => {
     const {
       content,
-      date: dateAuthored,
+      excerpt,
       link: quoteLink,
       title,
     } = quoteData || null;
+    const {
+      rendered: quoteExcerpt,
+    } = excerpt;
     const {
       rendered: quoteHtml,
     } = content;
@@ -32,9 +35,9 @@ const normalizeQuoteData = (apiData) => {
     } = title;
 
     return {
+      quoteExcerpt,
       quoteHtml,
       quoteAuthor,
-      dateAuthored,
       quoteLink,
     };
   });
@@ -73,7 +76,7 @@ export async function initDesignQuote() {
   const randomQuoteNumber = Math.floor(Math.random() * (designQuoteData.length - 1));
   const designQuote = designQuoteData[randomQuoteNumber];
   const designQuoteHtml = `
-    ${designQuote.quoteHtml}
+    <a href="${designQuote.quoteLink}" target="_blank" rel="noopener">${designQuote.quoteExcerpt}</a>
     <p class="quote-author">&mdash; ${designQuote.quoteAuthor}</p>
   `;
   const quoteElement = document.querySelector('.quote-container');
