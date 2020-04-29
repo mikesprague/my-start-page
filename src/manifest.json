@@ -3,7 +3,6 @@
   "description": "Minimalist start page to use for new/home tab in browser",
   "author": "Michael Sprague",
   "short_name": "My Start Page",
-  "default_locale": "en",
   "icons": {
     "16": "./images/icon-16.png",
     "24": "./images/icon-24.png",
