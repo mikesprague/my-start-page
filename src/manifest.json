@@ -3,14 +3,16 @@
   "description": "Minimalist start page to use for new/home tab in browser",
   "author": "Michael Sprague",
   "short_name": "My Start Page",
-  "icons": {
-    "16": "./images/icon-16.png",
-    "24": "./images/icon-24.png",
-    "32": "./images/icon-32.png",
-    "48": "./images/icon-48.png",
-    "64": "./images/icon-64.png",
-    "128": "./images/icon-128.png"
-  },
+  "icons": [
+    {
+    "16": "./images/new-tab-icon-16.png",
+    "24": "./images/new-tab-icon-24.png",
+    "32": "./images/new-tab-icon-32.png",
+    "48": "./images/new-tab-icon-48.png",
+    "64": "./images/new-tab-icon-64.png",
+    "128": "./images/new-tab-icon-128.png"
+    }
+  ],
   "version": "0.0.1",
   "manifest_version": 2,
   "chrome_url_overrides": {
