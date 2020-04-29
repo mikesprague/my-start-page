@@ -68,19 +68,19 @@ export async function getLocationNameAndWeather(position) {
   let weatherAndLocation = null;
   if (lastUpdated) {
     const nextUpdateTime = dayjs(lastUpdated).add(20, 'minute');
-    if (dayjs(lastUpdated).isAfter(nextUpdateTime) || lastUpdated === null) {
-      weatherAndLocation = await getWeatherData(lat, lng);
+    if (dayjs().isAfter(nextUpdateTime)) {
       clearData('weatherData');
       clearData('weatherLastUpdated');
+      weatherAndLocation = await getWeatherData(lat, lng);
       setData('weatherData', weatherAndLocation);
       setData('weatherLastUpdated', dayjs());
     } else {
       weatherAndLocation = getData('weatherData');
     }
   } else {
-    weatherAndLocation = await getWeatherData(lat, lng);
     clearData('weatherData');
     clearData('weatherLastUpdated');
+    weatherAndLocation = await getWeatherData(lat, lng);
     setData('weatherData', weatherAndLocation);
     setData('weatherLastUpdated', dayjs());
   }
