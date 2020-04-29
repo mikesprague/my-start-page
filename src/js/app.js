@@ -128,7 +128,7 @@ const setImageAndMetaData = async () => {
     if (altDescription) {
       return altDescription;
     }
-    return '';
+    return 'No description';
   };
   document.body.style.background = `url('${imageUrl}') no-repeat center center fixed`;
   document.body.style.backgroundSize = 'cover';
