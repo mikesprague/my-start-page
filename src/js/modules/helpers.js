@@ -26,7 +26,7 @@ import {
 } from '@fortawesome/pro-duotone-svg-icons';
 
 export function apiUrl () {
-  if (window.location.origin.includes('chrome-extension://')) {
+  if (window.location.origin.includes('-extension://')) {
     return 'https://my-start-page.netlify.app/.netlify/functions';
   }
   if (window.location.hostname === 'localhost') {

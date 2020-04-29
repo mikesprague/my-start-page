@@ -86,6 +86,12 @@ const webpackPlugins = [
     force: true,
     flatten: true,
   }]),
+  new CopyWebpackPlugin([{
+    from: './src/manifest.json',
+    to: './',
+    force: true,
+    flatten: true,
+  }]),
 ];
 
 if (mode === 'production') {

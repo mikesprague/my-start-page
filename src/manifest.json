@@ -1,0 +1,14 @@
+{
+  "name": "My Start Page",
+  "description": "Minimalist start page to use for new/home tab in browser",
+  "author": "Michael Sprague",
+  "short_name": "Devo",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "chrome_url_overrides": {
+    "newtab": "index.html"
+  },
+  "permissions": [
+    "https://my-start-page.netlify.app/*"
+  ]
+}
