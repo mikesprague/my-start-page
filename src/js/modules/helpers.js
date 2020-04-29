@@ -23,6 +23,8 @@ import {
   faImage,
   faUser,
   faHourglassHalf,
+  faTint,
+  faCode,
 } from '@fortawesome/pro-duotone-svg-icons';
 import { register } from 'register-service-worker';
 import {
@@ -62,6 +64,8 @@ export function initIcons() {
     faThunderstorm,
     faTornado,
     faHourglassHalf,
+    faTint,
+    faCode,
   );
   dom.watch();
 }
