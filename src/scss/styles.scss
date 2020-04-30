@@ -29,6 +29,7 @@ body {
   background-size: cover;
   color: $color-white;
   font-family: 'Roboto Slab', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  margin-bottom: 60px;
 }
 
 a {
@@ -98,9 +99,14 @@ a {
 }
 
 .footer {
+  bottom: 0;
+  // Set the fixed height of the footer here
   font-size: .8rem;
   font-weight: 200;
-  line-height: 20px;
+  height: 60px;
+  line-height: 20px; // Vertically center the text there
+  position: absolute;
+  width: 100%;
 }
 
 .content-icon {
