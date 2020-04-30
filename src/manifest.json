@@ -3,38 +3,14 @@
   "description": "Minimalist start page to use for new/home tab in browser",
   "author": "Michael Sprague",
   "short_name": "My Start Page",
-  "icons": [
-    {
-      "src": "./images/new-tab-icon-16.png",
-      "type": "image/png",
-      "sizes": "16x16"
-    },
-    {
-      "src": "./images/new-tab-icon-24.png",
-      "type": "image/png",
-      "sizes": "24x24"
-    },
-    {
-      "src": "./images/new-tab-icon-32.png",
-      "type": "image/png",
-      "sizes": "32x32"
-    },
-    {
-      "src": "./images/new-tab-icon-48.png",
-      "type": "image/png",
-      "sizes": "48x48"
-    },
-    {
-      "src": "./images/new-tab-icon-64.png",
-      "type": "image/png",
-      "sizes": "64x64"
-    },
-    {
-      "src": "./images/new-tab-icon-128.png",
-      "type": "image/png",
-      "sizes": "128x128"
-    }
-  ],
+  "icons": {
+    "16": "./images/new-tab-icon-16.png",
+    "24": "./images/new-tab-icon-24.png",
+    "32": "./images/new-tab-icon-32.png",
+    "48": "./images/new-tab-icon-48.png",
+    "64": "./images/new-tab-icon-64.png",
+    "128": "./images/new-tab-icon-128.png"
+  },
   "version": "0.0.1",
   "manifest_version": 2,
   "chrome_url_overrides": {
@@ -47,11 +23,5 @@
     "unlimitedStorage",
     "https://my-start-page.netlify.app/*",
     "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand"
-  ],
-  "homepage_url": "https://my-start-page.netlify.app/",
-  "scope": "/",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#222",
-  "theme_color": "#222"
+  ]
 }
