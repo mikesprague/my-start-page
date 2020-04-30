@@ -46,7 +46,7 @@
     "register-service-worker": "^1.7.1",
     "request-promise": "^4.2.5",
     "rss-parser": "^3.7.6",
-    "snyk": "^1.315.1",
+    "snyk": "^1.316.1",
     "tippy.js": "^6.2.3"
   },
   "devDependencies": {
