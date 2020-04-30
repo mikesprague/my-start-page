@@ -24,12 +24,18 @@ exports.handler = (event, context, callback) => {
 
   const {
     GOOGLE_MAPS_API_KEY,
-    DARK_SKY_API_KEY,
+    CLIMACELL_API_KEY,
   } = process.env;
 
-  const units = event.queryStringParameters.units || 'auto';
+  const units = event.queryStringParameters.units || 'us';
   const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`;
-  const weatherApiUrl = `https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${lat},${lng}/?units=${units}`;
+  const climacellApiURLPrefix = 'https://api.climacell.co/v3/weather';
+  const climacellApiUrls = {
+    realtime: `${climacellApiURLPrefix}/realtime?lat=${lat}&lon=${lng}&unit_system=${units}&fields=precipitation,precipitation_type,temp,feels_like,dewpoint,wind_speed,wind_gust,baro_pressure,visibility,humidity,wind_direction,sunrise,sunset,cloud_cover,cloud_ceiling,cloud_base,surface_shortwave_radiation,moon_phase,weather_code&apikey=${CLIMACELL_API_KEY}`,
+    nowcast: `${climacellApiURLPrefix}/nowcast?lat=${lat}&lon=${lng}&unit_system=${units}&timestep=1&start_time=now&fields=precipitation,precipitation_type,temp,feels_like,dewpoint,wind_speed,wind_gust,baro_pressure,visibility,humidity,wind_direction,sunrise,sunset,cloud_cover,cloud_ceiling,cloud_base,surface_shortwave_radiation,weather_code&apikey=${CLIMACELL_API_KEY}`,
+    hourly: `${climacellApiURLPrefix}/hourly?lat=${lat}&lon=${lng}&unit_system=${units}&start_time=now&fields=precipitation,precipitation_type,precipitation_probability,temp,feels_like,dewpoint,wind_speed,wind_gust,baro_pressure,visibility,humidity,wind_direction,sunrise,sunset,cloud_cover,cloud_ceiling,cloud_base,surface_shortwave_radiation,moon_phase,weather_code&apikey=${CLIMACELL_API_KEY}`,
+    daily: `${climacellApiURLPrefix}/daily?lat=${lat}&lon=${lng}&unit_system=${units}&start_time=now&fields=precipitation,precipitation_accumulation,temp,feels_like,wind_speed,baro_pressure,visibility,humidity,wind_direction,sunrise,sunset,moon_phase,weather_code&apikey=${CLIMACELL_API_KEY}`,
+  };
 
   const geocodeOptions = {
     uri: geocodeApiUrl,
@@ -79,7 +85,7 @@ exports.handler = (event, context, callback) => {
     });
 
   const weatherOptions = {
-    uri: weatherApiUrl,
+    uri: climacellApiUrls.realtime,
     headers: {
       'User-Agent': 'Request-Promise',
     },
