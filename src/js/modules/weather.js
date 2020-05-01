@@ -54,7 +54,7 @@ export function getWeatherIcon(icon) {
       night: 'fad fa-fw fa-moon-stars',
     },
   };
-  if (iconMap === 'partly_cloudy' || iconMap === 'mostly_clear' || iconMap === 'clear') {
+  if (icon === 'partly_cloudy' || icon === 'mostly_clear' || icon === 'clear') {
     const hour = dayjs().hour();
     const timeOfDay = hour >= 5 && hour <= 19 ? 'day' : 'night';
     return iconMap[icon][timeOfDay];
