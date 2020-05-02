@@ -25,15 +25,15 @@ exports.handler = async (event, context, callback) => {
   const {
     GOOGLE_MAPS_API_KEY,
     DARK_SKY_API_KEY,
-    OPEN_WEATHERMAP_API_KEI,
+    // OPEN_WEATHERMAP_API_KEI,
   } = process.env;
 
   const units = event.queryStringParameters.units || 'auto';
   const geocodeApiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${GOOGLE_MAPS_API_KEY}`;
   const weatherApiUrl = `https://api.darksky.net/forecast/${DARK_SKY_API_KEY}/${lat},${lng}/?units=${units}`;
-  const openWeatherMapApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&&units=${units}&appid=${OPEN_WEATHERMAP_API_KEI}`;
+  // const openWeatherMapApiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lng}&&units=${units}&appid=${OPEN_WEATHERMAP_API_KEI}`;
 
-  const geocodePromise = axios.get(geocodeApiUrl)
+  const geocodePromise = await axios.get(geocodeApiUrl)
     .then((response) => {
       const fullResults = response.data.results;
       const formattedAddress = fullResults[0].formatted_address;
@@ -73,7 +73,7 @@ exports.handler = async (event, context, callback) => {
       });
     });
 
-  const weatherPromise = axios.get(weatherApiUrl)
+  const weatherPromise = await axios.get(weatherApiUrl)
     .then((response) => {
       const weatherData = {
         weather: response.data,
@@ -88,19 +88,12 @@ exports.handler = async (event, context, callback) => {
       });
     });
 
-  Promise.all(
-    [geocodePromise, weatherPromise],
-  ).then((response) => {
-    callback(null, {
-      statusCode: 200,
-      headers: callbackHeaders,
-      body: JSON.stringify(response),
-    });
-  }).catch((err) => {
-    callback(console.error, {
-      statusCode: 500,
-      headers: callbackHeaders,
-      body: JSON.stringify(err),
-    });
+  callback(null, {
+    statusCode: 200,
+    headers: callbackHeaders,
+    body: JSON.stringify({
+      location: geocodePromise.location,
+      weather: weatherPromise.weather,
+    }),
   });
 };

@@ -1,6 +1,5 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import tippyjs from 'tippy.js';
 import {
   clearData,
   getData,
@@ -45,7 +44,7 @@ async function geolocationError(error) {
 }
 
 export function populateWeatherAndLocation(weatherAndLocationData) {
-  const { locationName } = weatherAndLocationData[0].location;
+  const { locationName } = weatherAndLocationData.location;
   const locationEl = document.querySelector('.weather-location');
   locationEl.textContent = locationName;
   const {
@@ -53,7 +52,7 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
     icon,
     summary,
     temperature,
-  } = weatherAndLocationData[1].weather.currently;
+  } = weatherAndLocationData.weather.currently;
   document.querySelector('.weather-temp').innerHTML = `${Math.round(temperature)}&deg;`;
   document.querySelector('.icon-and-temp').setAttribute('title', `${locationName}\n${summary}\nFeels Like ${Math.round(apparentTemperature)} degrees`);
   const weatherIconClass = getWeatherIcon(icon);
