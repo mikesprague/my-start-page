@@ -4,7 +4,6 @@ import {
 } from './modules/background-images';
 import {
   initClock,
-  setGreeting,
 } from './modules/clock';
 import {
   initIcons,
@@ -21,7 +20,6 @@ const initApp = () => {
   initServiceWorker();
   setImageAndMetaData();
   initClock(5);
-  setGreeting();
   initIcons();
   initDesignQuote();
   initWeather();
