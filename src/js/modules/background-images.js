@@ -37,7 +37,9 @@ const normalizeImageData = (apiData) => {
       name,
     } = location || null;
     const {
-      regular: imageUrl
+      regular: imageUrl,
+      small: imageSmallUrl,
+      thumb: imageThumbUrl,
     } = urls || null;
     const {
       name: userName,
@@ -53,6 +55,8 @@ const normalizeImageData = (apiData) => {
       name,
       imageLink,
       imageUrl,
+      imageSmallUrl,
+      imageThumbUrl,
       userLink,
       userName,
     };
@@ -96,6 +100,7 @@ export const setImageAndMetaData = async () => {
     name,
     imageLink,
     imageUrl,
+    imageThumbUrl,
     userLink,
     userName,
   } = imageData || null;
@@ -108,19 +113,19 @@ export const setImageAndMetaData = async () => {
     }
     return 'No description available';
   };
-  document.body.style.background = `url('${imageUrl}') no-repeat center center fixed`;
-  document.body.style.backgroundSize = 'cover';
+  document.body.style.background = `url('${imageUrl}'), url('${imageThumbUrl}') no-repeat center center fixed, no-repeat center center fixed`;
+  document.body.style.backgroundSize = 'cover, cover';
   const linkSuffix = '?utm_source=My%20Browser%20Start%20Page&utm_medium=referral';
   const bgMetadataEl = document.querySelector('.bg-metadata');
   bgMetadataEl.innerHTML = `
     <span class="text-muted">
-      <a class="" href="${imageLink}${linkSuffix}" target="_blank">
+      <a class="" href="${imageLink}${linkSuffix}" target="_blank" rel="noopeener">
         <i class="fad fa-fw fa-image"></i> ${getImageTitle()}
       </a>
       <br>
-      <a href="${userLink}${linkSuffix}" target="_blank"><i class="fad fa-fw fa-user"></i> ${userName}</a>
+      <a href="${userLink}${linkSuffix}" target="_blank" rel="noopeener"><i class="fad fa-fw fa-user"></i> ${userName}</a>
       via
-      <a href="https://unsplash.com/${linkSuffix}" target="_blank">Unsplash</a>
+      <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopeener">Unsplash</a>
     </span>
   `;
 };
