@@ -13,6 +13,15 @@ const mode = process.env.NODE_ENV;
 
 const webpackRules = [
   {
+    test: /\.(ttf|eot|woff|woff2)$/,
+    use: {
+      loader: 'file-loader',
+      options: {
+        name: 'fonts/[name].[ext]',
+      },
+    },
+  },
+  {
     test: /\.(sa|sc|c)ss$/,
     use: [
       MiniCssExtractPlugin.loader,
@@ -91,6 +100,12 @@ const webpackPlugins = [
     to: './',
     force: true,
     flatten: true,
+  }]),
+  new CopyWebpackPlugin([{
+    from: './src/fonts/*.woff2',
+    to: './fonts',
+    flatten: true,
+    force: true,
   }]),
 ];
 
