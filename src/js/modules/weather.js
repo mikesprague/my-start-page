@@ -54,7 +54,8 @@ export function getWeatherIcon(icon) {
       night: 'fad fa-fw fa-moon-stars',
     },
   };
-  if (icon === 'partly_cloudy' || icon === 'mostly_clear' || icon === 'clear') {
+  const iconsWithDayNight = ['partly_cloudy', 'mostly_clear', 'clear'];
+  if (iconsWithDayNight.includes(icon)) {
     const hour = dayjs().hour();
     const timeOfDay = hour >= 5 && hour <= 19 ? 'day' : 'night';
     return iconMap[icon][timeOfDay];
@@ -128,14 +129,18 @@ export async function getLocationNameAndWeather(position) {
 export async function initWeather() {
   const lastUpdated = getData('weatherLastUpdated');
   const weatherAndLocation = getData('weatherData');
+  const geolocationOptions = {
+    enableHighAccuracy: true,
+    maximumAge: 3600000 // 1 hour (number of seconds * 1000 milliseconds)
+  };
   if (lastUpdated && weatherAndLocation) {
     const nextUpdateTime = dayjs(lastUpdated).add(20, 'minute');
     if (dayjs().isAfter(nextUpdateTime)) {
-      navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, console.error);
+      navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, geolocationError, geolocationOptions);
     } else {
       populateWeatherAndLocation(weatherAndLocation);
     }
   } else {
-    navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, console.error);
+    navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, geolocationError, geolocationOptions);
   }
 }
