@@ -7,6 +7,7 @@ import {
 } from './data';
 import {
   apiUrl,
+  initTooltips,
 } from './helpers';
 
 export async function getWeatherData (lat, lng) {
@@ -44,8 +45,11 @@ async function geolocationError(error) {
 }
 
 export function populateWeatherAndLocation(weatherAndLocationData) {
-  const { locationName } = weatherAndLocationData.location;
   const locationEl = document.querySelector('.weather-location');
+  const iconAndTempEl = document.querySelector('.icon-and-temp');
+  const weatherTempEl = document.querySelector('.weather-temp');
+  const weatherIcon = document.querySelector('.weather-icon');
+  const { locationName } = weatherAndLocationData.location;
   locationEl.textContent = locationName;
   const {
     apparentTemperature,
@@ -53,10 +57,18 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
     summary,
     temperature,
   } = weatherAndLocationData.weather.currently;
-  document.querySelector('.weather-temp').innerHTML = `${Math.round(temperature)}&deg;`;
-  document.querySelector('.icon-and-temp').setAttribute('title', `${locationName}\n${summary}\nFeels Like ${Math.round(apparentTemperature)} degrees`);
   const weatherIconClass = getWeatherIcon(icon);
-  const weatherIcon = document.querySelector('.weather-icon');
+  const tooltipString = `
+    <i class="fad fa-fw fa-map-marker-alt"></i> ${locationName}
+    <br>
+    <i class="${weatherIconClass}"></i> ${summary}
+    <br>
+    <i class="fad fa-fw fa-thermometer-half"></i> Feels Like ${Math.round(apparentTemperature)}&deg;
+  `;
+
+  weatherTempEl.innerHTML = `${Math.round(temperature)}&deg;`;
+  iconAndTempEl.setAttribute('data-tippy-content', tooltipString);
+  initTooltips();
   weatherIcon.removeAttribute('class');
   weatherIcon.setAttribute('class', `${weatherIconClass} weather-icon`);
 }

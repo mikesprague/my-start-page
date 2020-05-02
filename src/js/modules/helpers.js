@@ -29,9 +29,13 @@ import {
   faCloudMoon,
   faSunCloud,
   faMoonCloud,
-  faTint
+  faTint,
+  faThermometerHalf,
+  faMapMarkerAlt,
+
 } from '@fortawesome/pro-duotone-svg-icons';
 import { register } from 'register-service-worker';
+import tippy from 'tippy.js';
 import {
   resetData,
 } from './data';
@@ -76,8 +80,16 @@ export function initIcons() {
     faHourglassHalf,
     faCode,
     faTint,
+    faThermometerHalf,
+    faMapMarkerAlt,
   );
   dom.watch();
+}
+
+export function initTooltips() {
+  tippy('[data-tippy-content]', {
+    allowHTML: true,
+  });
 }
 
 export function handleError(error) {

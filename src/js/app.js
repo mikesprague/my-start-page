@@ -8,6 +8,7 @@ import {
 import {
   initIcons,
   initServiceWorker,
+  initTooltips,
 } from './modules/helpers';
 import {
   initDesignQuote,
@@ -23,6 +24,7 @@ const initApp = () => {
   initIcons();
   initDesignQuote();
   initWeather();
+  initTooltips();
 };
 
 document.onreadystatechange = async () => {
