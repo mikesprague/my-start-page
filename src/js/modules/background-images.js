@@ -113,8 +113,14 @@ export const setImageAndMetaData = async () => {
     }
     return 'No description available';
   };
-  document.body.style.background = `url('${imageUrl}'), url('${imageThumbUrl}') no-repeat center center fixed, no-repeat center center fixed`;
-  document.body.style.backgroundSize = 'cover, cover';
+  document.body.style.background = `url('${imageThumbUrl}') no-repeat center center fixed`;
+  document.body.style.backgroundSize = 'cover';
+  const fullBgImage = new Image();
+  fullBgImage.src = imageUrl;
+  fullBgImage.onload = () => {
+    document.body.style.background = `url('${imageUrl}') no-repeat center center fixed`;
+    document.body.style.backgroundSize = 'cover';
+  };
   const linkSuffix = '?utm_source=My%20Browser%20Start%20Page&utm_medium=referral';
   const bgMetadataEl = document.querySelector('.bg-metadata');
   bgMetadataEl.innerHTML = `
