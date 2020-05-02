@@ -42,9 +42,7 @@
     "cssnano": "^4.1.10",
     "dayjs": "^1.8.26",
     "dotenv": "^8.2.0",
-    "node-fetch": "^2.6.0",
     "register-service-worker": "^1.7.1",
-    "request-promise": "^4.2.5",
     "rss-parser": "^3.7.6",
     "snyk": "^1.316.2",
     "tippy.js": "^6.2.3"

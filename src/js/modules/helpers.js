@@ -29,6 +29,7 @@ import {
   faCloudMoon,
   faSunCloud,
   faMoonCloud,
+  faTint
 } from '@fortawesome/pro-duotone-svg-icons';
 import { register } from 'register-service-worker';
 import {
@@ -74,6 +75,7 @@ export function initIcons() {
     faThunderstorm,
     faHourglassHalf,
     faCode,
+    faTint,
   );
   dom.watch();
 }

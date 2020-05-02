@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import tippyjs from 'tippy.js';
 import {
   clearData,
   getData,
@@ -21,45 +22,21 @@ export async function getWeatherData (lat, lng) {
 
 export function getWeatherIcon(icon) {
   const iconMap = {
-    rain_heavy: 'fad fa-fw fa-cloud-showers',
+    'clear-day': 'fad fa-fw fa-sun',
+    'clear-night': 'fad fa-fw fa-moon-stars',
     rain: 'fad fa-fw fa-cloud-rain',
-    rain_light: 'fad fa-fw fa-cloud-drizzle',
-    freezing_rain_heavy: 'fad fa-fw fa-cloud-sleet',
-    freezing_rain: 'fad fa-fw fa-cloud-sleet',
-    freezing_rain_light: 'fad fa-fw fa-cloud-sleet',
-    freezing_drizzle: 'fad fa-fw fa-cloud-sleet',
-    drizzle: 'fad fa-fw fa-cloud-drizzle',
-    ice_pellets_heavy: 'fad fa-fw fa-cloud-hail',
-    ice_pellets: 'fad fa-fw fa-cloud-hail',
-    ice_pellets_light: 'fad fa-fw fa-cloud-hail',
-    snow_heavy: 'fad fa-fw fa-cloud-snow',
     snow: 'fad fa-fw fa-cloud-snow',
-    snow_light: 'fad fa-fw fa-cloud-snow',
-    flurries: 'fad fa-fw fa-cloud-snow',
-    tstorm: 'fad fa-fw fa-thunderstorm',
-    fog_light: 'fad fa-fw fa-fog',
+    sleet: 'fad fa-fw fa-cloud-sleet',
+    wind: 'fad fa-fw fa-wind',
     fog: 'fad fa-fw fa-fog',
-    cloudy: 'fad fa-fw fa-cloud',
-    mostly_cloudy: 'fad fa-fw fa-clouds',
-    partly_cloudy: {
-      day: 'fad fa-fw fa-cloud-sun',
-      night: 'fad fa-fw fa-cloud-moon',
-    },
-    mostly_clear: {
-      day: 'fad fa-fw fa-sun-cloud',
-      night: 'fad fa-fw fa-moon-cloud',
-    },
-    clear: {
-      day: 'fad fa-fw fa-sun',
-      night: 'fad fa-fw fa-moon-stars',
-    },
+    cloudy: 'fad fa-fw fa-clouds',
+    'partly-cloudy-day': 'fad fa-fw fa-clouds-sun',
+    'partly-cloudy-night': 'fad fa-fw fa-clouds-moon',
+    hail: 'fad fa-fw fa-cloud-hail',
+    hurricane: 'fad fa-fw fa-hurricane',
+    thunderstorm: 'fad fa-fw fa-thunderstorm',
+    tornado: 'fad fa-fw fa-tornado',
   };
-  const iconsWithDayNight = ['partly_cloudy', 'mostly_clear', 'clear'];
-  if (iconsWithDayNight.includes(icon)) {
-    const hour = dayjs().hour();
-    const timeOfDay = hour >= 5 && hour <= 19 ? 'day' : 'night';
-    return iconMap[icon][timeOfDay];
-  }
   return iconMap[icon];
 }
 
@@ -72,11 +49,14 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
   const locationEl = document.querySelector('.weather-location');
   locationEl.textContent = locationName;
   const {
-    temp,
-    weather_code: icon,
-  } = weatherAndLocationData[1].weather;
-  document.querySelector('.weather-temp').innerHTML = `${Math.round(temp.value)}&deg;`;
-  const weatherIconClass = getWeatherIcon(icon.value);
+    apparentTemperature,
+    icon,
+    summary,
+    temperature,
+  } = weatherAndLocationData[1].weather.currently;
+  document.querySelector('.weather-temp').innerHTML = `${Math.round(temperature)}&deg;`;
+  document.querySelector('.icon-and-temp').setAttribute('title', `${locationName}\n${summary}\nFeels Like ${Math.round(apparentTemperature)} degrees`);
+  const weatherIconClass = getWeatherIcon(icon);
   const weatherIcon = document.querySelector('.weather-icon');
   weatherIcon.removeAttribute('class');
   weatherIcon.setAttribute('class', `${weatherIconClass} weather-icon`);
