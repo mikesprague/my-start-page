@@ -82,6 +82,16 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
   weatherIcon.setAttribute('class', `${weatherIconClass} weather-icon`);
 }
 
+export async function resetAndGetWeatherData(lat, lng) {
+  clearData('weatherData');
+  clearData('weatherLastUpdated');
+  const weatherAndLocation = await getWeatherData(lat, lng);
+  setData('weatherData', weatherAndLocation);
+  setData('weatherLastUpdated', dayjs());
+
+  return weatherAndLocation;
+}
+
 export async function getLocationNameAndWeather(position) {
   const lng = position.coords.longitude;
   const lat = position.coords.latitude;
@@ -91,20 +101,12 @@ export async function getLocationNameAndWeather(position) {
   if (lastUpdated) {
     const nextUpdateTime = dayjs(lastUpdated).add(20, 'minute');
     if (dayjs().isAfter(nextUpdateTime)) {
-      clearData('weatherData');
-      clearData('weatherLastUpdated');
-      weatherAndLocation = await getWeatherData(lat, lng);
-      setData('weatherData', weatherAndLocation);
-      setData('weatherLastUpdated', dayjs());
+      weatherAndLocation = await resetAndGetWeatherData(lat, lng);
     } else {
       weatherAndLocation = getData('weatherData');
     }
   } else {
-    clearData('weatherData');
-    clearData('weatherLastUpdated');
-    weatherAndLocation = await getWeatherData(lat, lng);
-    setData('weatherData', weatherAndLocation);
-    setData('weatherLastUpdated', dayjs());
+    weatherAndLocation = await resetAndGetWeatherData(lat, lng);
   }
   populateWeatherAndLocation(weatherAndLocation);
 }
