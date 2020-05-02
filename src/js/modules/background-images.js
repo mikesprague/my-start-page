@@ -119,13 +119,13 @@ export const setImageAndMetaData = async () => {
   const bgMetadataEl = document.querySelector('.bg-metadata');
   bgMetadataEl.innerHTML = `
     <span class="text-muted">
-      <a class="" href="${imageLink}${linkSuffix}" target="_blank" rel="noopeener">
+      <a class="" href="${imageLink}${linkSuffix}" target="_blank" rel="noopener">
         <i class="fad fa-fw fa-image"></i> ${getImageTitle()}
       </a>
       <br>
-      <a href="${userLink}${linkSuffix}" target="_blank" rel="noopeener"><i class="fad fa-fw fa-user"></i> ${userName}</a>
+      <a href="${userLink}${linkSuffix}" target="_blank" rel="noopener"><i class="fad fa-fw fa-user"></i> ${userName}</a>
       via
-      <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopeener">Unsplash</a>
+      <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopener">Unsplash</a>
     </span>
   `;
 };
