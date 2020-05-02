@@ -64,23 +64,6 @@ export function getWeatherIcon(icon) {
 }
 
 async function geolocationError(error) {
-  // let errorMessage = '';
-  // switch (error.code) {
-  //   case error.PERMISSION_DENIED:
-  //     errorMessage = errorTemplates.geolocationPermission;
-  //     break;
-  //   case error.POSITION_UNAVAILABLE:
-  //     errorMessage = errorTemplates.geolocationPosition;
-  //     break;
-  //   case error.TIMEOUT:
-  //     errorMessage = errorTemplates.geolocationTimeout;
-  //     break;
-  //   case error.UNKNOWN_ERROR:
-  //     errorMessage = errorTemplates.geolocationUnknown;
-  //     break;
-  //   default:
-  //     break;
-  // }
   console.error(error);
 }
 
@@ -126,21 +109,26 @@ export async function getLocationNameAndWeather(position) {
   populateWeatherAndLocation(weatherAndLocation);
 }
 
-export async function initWeather() {
-  const lastUpdated = getData('weatherLastUpdated');
-  const weatherAndLocation = getData('weatherData');
+export async function doGeolocation() {
   const geolocationOptions = {
     enableHighAccuracy: true,
     maximumAge: 3600000 // 1 hour (number of seconds * 1000 milliseconds)
   };
+  navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, geolocationError, geolocationOptions);
+}
+
+export async function initWeather() {
+  const lastUpdated = getData('weatherLastUpdated');
+  const weatherAndLocation = getData('weatherData');
+
   if (lastUpdated && weatherAndLocation) {
     const nextUpdateTime = dayjs(lastUpdated).add(20, 'minute');
     if (dayjs().isAfter(nextUpdateTime)) {
-      navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, geolocationError, geolocationOptions);
+      doGeolocation();
     } else {
       populateWeatherAndLocation(weatherAndLocation);
     }
   } else {
-    navigator.geolocation.getCurrentPosition(getLocationNameAndWeather, geolocationError, geolocationOptions);
+    doGeolocation();
   }
 }
