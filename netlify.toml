@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run build:netlify"
   functions = "lambda"
   publish="public"
 
@@ -10,7 +10,7 @@
   functionsPort = 9000
 
 [production]
-  command = "npm run build"
+  command = "npm run build:netlify"
   publish = "public"
 
 [[headers]]
