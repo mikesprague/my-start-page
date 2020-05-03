@@ -109,6 +109,14 @@ a {
   width: 100%;
 }
 
-.content-icon {
-  font-size: 2rem;
+.content-icons {
+
+  .list-group-item {
+    background-color: transparent !important;
+    border: 0 !important;
+  }
+
+  .content-icon {
+    font-size: 2rem;
+  }
 }
