@@ -1,5 +1,6 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f17a321d-5c04-496a-9350-64b5df3335e9/deploy-status)](https://app.netlify.com/sites/my-start-page/deploys)
 [![Known Vulnerabilities](https://snyk.io/test/github/mikesprague/my-start-page/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mikesprague/my-start-page?targetFile=package.json)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikesprague%2Fmy-start-page.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikesprague%2Fmy-start-page?ref=badge_shield)
 
 # My Start Page
 
@@ -27,3 +28,29 @@ Availabile to install via <a href="https://chrome.google.com/webstore/detail/pjm
 <a href="https://my-start-page.netlify.app" target="_blank" rel="noopener">https://my-start-page.netlify.app</a>
 
 ![My Start Page Screenshot](./screenshot.png "My Start Page Screenshot")
+
+## License
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmikesprague%2Fmy-start-page.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmikesprague%2Fmy-start-page?ref=badge_large)
+
+MIT License
+
+Copyright (c) 2020 Michael Sprague
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
