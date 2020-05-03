@@ -89,6 +89,7 @@ export function initIcons() {
 export function initTooltips() {
   tippy('[data-tippy-content]', {
     allowHTML: true,
+    placement: 'left',
   });
 }
 
