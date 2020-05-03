@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f17a321d-5c04-496a-9350-64b5df3335e9/deploy-status)](https://app.netlify.com/sites/my-start-page/deploys)
+[![Known Vulnerabilities](https://snyk.io/test/github/mikesprague/my-start-page/badge.svg?targetFile=package.json)](https://snyk.io/test/github/mikesprague/my-start-page?targetFile=package.json)
 
 # My Start Page
 
