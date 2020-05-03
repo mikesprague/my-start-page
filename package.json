@@ -1,6 +1,6 @@
 {
   "name": "start-page",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "private": true,
   "engines": {
@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "npm run clean && npm run webpack && npm run lambda:build",
-    "build:extension": "npm run clean:extension && npm run webpack",
+    "build:extension": "npm run clean:extension && npm run webpack && npm run zip",
     "build:netlify": "npm run webpack && npm run lambda:build",
     "clean": "rm -rf ./public && rm -rf ./lambda",
     "clean:extension": "rm -rf ./public",
@@ -21,7 +21,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "cross-env NODE_ENV=production webpack -p --colors --display minimal",
     "webpack:dev": "cross-env NODE_ENV=development webpack -d --colors --display minimal",
-    "webpack:serve": "cross-env NODE_ENV=development webpack-dev-server --port 4444"
+    "webpack:serve": "cross-env NODE_ENV=development webpack-dev-server --port 4444",
+    "zip": "cd public && zip -r my-start-page.zip ./"
   },
   "keywords": [],
   "repository": {
