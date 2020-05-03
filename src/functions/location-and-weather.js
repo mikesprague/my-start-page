@@ -39,11 +39,11 @@ exports.handler = async (event, context, callback) => {
       const formattedAddress = fullResults[0].formatted_address;
       let locationName = '';
       const addressTargets = ['neighborhood', 'locality', 'administrative_area_level_2', 'administrative_area_level_1'];
-      addressTargets.map((target) => {
+      addressTargets.forEach((target) => {
         if (!locationName.length) {
-          fullResults.map((result) => {
+          fullResults.forEach((result) => {
             if (!locationName.length) {
-              result.address_components.map((component) => {
+              result.address_components.forEach((component) => {
                 if (!locationName.length && component.types.indexOf(target) > -1) {
                   locationName = component.long_name;
                 }
@@ -52,17 +52,15 @@ exports.handler = async (event, context, callback) => {
           });
         }
       });
-      if (locationName.length) {
-        // console.log(locationName);
-        const locationData = {
-          location: {
-            locationName,
-            formattedAddress,
-            fullResults,
-          },
-        };
-        return locationData;
-      }
+      // console.log(locationName);
+      const locationData = {
+        location: {
+          locationName,
+          formattedAddress,
+          fullResults,
+        },
+      };
+      return locationData;
     })
     .catch((err) => {
       console.log(err);
