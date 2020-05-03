@@ -1,8 +1,8 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/f17a321d-5c04-496a-9350-64b5df3335e9/deploy-status)](https://app.netlify.com/sites/my-start-page/deploys)
 
-# my-start-page
+# My Start Page
 
-Minimalist start page to use for new/home tab in browser
+Minimalist new tab start page extension
 
 ## About
 
@@ -16,5 +16,13 @@ Minimalist start page to use for new/home tab in browser
   - Hacker News front page
   - Product Hunt front page
   - Reddit popular posts
+
+### Install
+
+Availabile to install via <a href="https://chrome.google.com/webstore/detail/pjmobojmaaemcnoiccepkecplpddaaaa" target="_blank" rel="noopener">Chrome Store</a>
+
+## Demo/Screenshot
+
+<a href="https://my-start-page.netlify.app" target="_blank" rel="noopener">https://my-start-page.netlify.app</a>
 
 ![My Start Page Screenshot](./screenshot.png "My Start Page Screenshot")
