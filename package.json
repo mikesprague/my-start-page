@@ -48,7 +48,7 @@
     "dotenv": "^8.2.0",
     "register-service-worker": "^1.7.1",
     "rss-parser": "^3.7.6",
-    "snyk": "^1.317.0",
+    "snyk": "^1.319.0",
     "tippy.js": "^6.2.3"
   },
   "devDependencies": {
