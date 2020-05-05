@@ -1,7 +1,7 @@
 {
   "name": "start-page",
   "version": "0.0.4",
-  "description": "",
+  "description": "Minimalist new tab start page extension",
   "private": true,
   "engines": {
     "node": ">= 12.x",
@@ -50,7 +50,6 @@
     "dayjs": "^1.8.26",
     "dotenv": "^8.2.0",
     "register-service-worker": "^1.7.1",
-    "rss-parser": "^3.8.0",
     "snyk": "^1.319.0",
     "tippy.js": "^6.2.3"
   },
