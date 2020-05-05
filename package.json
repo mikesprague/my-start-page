@@ -1,6 +1,6 @@
 {
   "name": "start-page",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Minimalist new tab start page extension",
   "private": true,
   "engines": {
