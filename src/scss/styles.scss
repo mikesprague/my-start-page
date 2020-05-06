@@ -2,9 +2,11 @@
 @import '~tippy.js/dist/tippy';
 @import './font-roboto-slab';
 
+$color-black: #000;
 $color-white: #fff;
 $color-dark-gray: #333;
 $color-light-gray: #ddd;
+$color-black-forty-percent: rgba(0, 0, 0, .4);
 
 * {
   -moz-osx-font-smoothing: grayscale !important;
@@ -107,16 +109,20 @@ a {
   line-height: 20px; // Vertically center the text there
   position: absolute;
   width: 100%;
-}
-
-.content-icons {
-
-  .list-group-item {
-    background-color: transparent !important;
-    border: 0 !important;
-  }
 
   .content-icon {
     font-size: 2rem;
   }
+}
+
+.photo-overlay {
+  background-color: $color-black-forty-percent;
+  height: 100%;
+  left: 0;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -9999;
 }
