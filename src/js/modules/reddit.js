@@ -22,11 +22,11 @@ export async function getRedditPostsMarkup () {
     const listItemMarkup = `
       <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''}">
         <small>
-          <a href="${redditUrlPrefix}/r/${post.subreddit}" target="_blank" rel="noopener">/r/${post.subreddit}</a>
-          Posted by <a href="${redditUrlPrefix}/user/${post.author}/" target="_blank" rel="noopener">${post.author} <i class="fad fa-fw fa-user"></i></a>
+          <a href="${redditUrlPrefix}/r/${post.subreddit}" title="View Subreddit: /r/${post.subreddit}" target="_blank" rel="noopener">/r/${post.subreddit}</a>
+          Posted by <a href="${redditUrlPrefix}/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener">${post.author} <i class="fad fa-fw fa-user"></i></a>
         </small>
         <br>
-        <a href="${redditUrlPrefix}${post.permalink}" target="_blank" rel="noopener">${post.title}</a>
+        <a href="${redditUrlPrefix}${post.permalink}" title="View Post: ${post.title}" target="_blank" rel="noopener">${post.title}</a>
       </li>
     `;
     idx += 1;
@@ -38,7 +38,7 @@ export async function getRedditPostsMarkup () {
       <li class="list-group-item list-group-item-heading">
         <h5>
           <i class="fab fa-fw fa-reddit-alien"></i> Reddit Popular Posts
-          <small><a href="${redditUrlPrefix}/r/popular"><i class="fad fa-fw fa-external-link"></i> View on Reddit</a></small>
+          <small><a href="${redditUrlPrefix}/r/popular" title="View on Reddit" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Reddit</a></small>
         </h5>
       </li>
       ${postsMarkup.join('\n')}
