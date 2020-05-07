@@ -4,11 +4,11 @@
 
 # My Start Page
 
-Minimalist new tab start page extension
+Minimalist open source new tab extension for Chrome (no analytics or 3rd party tracking scripts used)
 
 ## About
 
-- Layout/design based on what I liked from the Momentum browser extension.
+- Layout/design based on what I liked from the Momentum browser extension
 - Date and time with greeting
 - Current temp/conditions ([powered by Dark Sky](https://darksky.net/poweredby/))
 - Random quote (from [Quotes on Design API](https://quotesondesign.com/api/))
@@ -25,9 +25,10 @@ Availabile to install via <a href="https://chrome.google.com/webstore/detail/pjm
 
 ## Demo/Screenshot
 
-<a href="https://my-start-page.netlify.app" target="_blank" rel="noopener">https://my-start-page.netlify.app</a>
+Demo: [https://my-start-page.netlify.app](https://my-start-page.netlify.app)</a>
 
-![My Start Page Screenshot](./screenshot.png "My Start Page Screenshot")
+![My Start Page Screenshot One](./screenshot-1.png "My Start Page Screenshot One")
+![My Start Page Screenshot Two](./screenshot-2.png "My Start Page Screenshot Two")
 
 ## License
 
