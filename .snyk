@@ -53,3 +53,5 @@ patch:
         patched: '2020-04-30T18:21:34.148Z'
     - snyk > @snyk/snyk-cocoapods-plugin > @snyk/cocoapods-lockfile-parser > @snyk/dep-graph > graphlib > lodash:
         patched: '2020-04-30T18:21:34.148Z'
+    - cheerio > lodash:
+        patched: '2020-05-07T22:23:13.476Z'
