@@ -115,7 +115,7 @@ export const setImageAndMetaData = async () => {
   };
   document.body.style.background = `url('${imageUrl}') no-repeat fixed center center, url('${imageThumbUrl}') no-repeat fixed center center`;
   document.body.style.backgroundSize = 'cover, cover';
-  const linkSuffix = '?utm_source=My%20Browser%20Start%20Page&utm_medium=referral';
+  const linkSuffix = '?utm_source=My%20Start%20Page&utm_medium=referral';
   const bgMetadataEl = document.querySelector('.bg-metadata');
   bgMetadataEl.innerHTML = `
     <span class="text-muted">
