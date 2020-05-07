@@ -1,6 +1,6 @@
 {
   "name": "My Start Page",
-  "description": "Minimalist new tab start page",
+  "description": "Minimalist open source new tab extension for Chrome (no analytics or 3rd party tracking scripts used)",
   "author": "Michael Sprague",
   "short_name": "My Start Page",
   "icons": [
