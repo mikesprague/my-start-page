@@ -45,8 +45,7 @@
     "geolocation",
     "storage",
     "unlimitedStorage",
-    "https://my-start-page.netlify.app/*",
-    "https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand"
+    "https://my-start-page.netlify.app/*"
   ],
   "homepage_url": "https://my-start-page.netlify.app/",
   "scope": "/",
