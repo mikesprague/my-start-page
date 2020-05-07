@@ -45,6 +45,7 @@
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
     "bootswatch": "^4.4.1",
+    "cheerio": "^1.0.0-rc.3",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
     "dayjs": "^1.8.26",
