@@ -113,7 +113,7 @@ export const setImageAndMetaData = async () => {
     }
     return 'No description available';
   };
-  document.body.style.background = `url('${imageUrl}') no-repeat center center fixed, url('${imageThumbUrl}') no-repeat center center fixed`;
+  document.body.style.background = `url('${imageUrl}') no-repeat fixed center center, url('${imageThumbUrl}') no-repeat fixed center center`;
   document.body.style.backgroundSize = 'cover, cover';
   const linkSuffix = '?utm_source=My%20Browser%20Start%20Page&utm_medium=referral';
   const bgMetadataEl = document.querySelector('.bg-metadata');
