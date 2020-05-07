@@ -1,13 +1,15 @@
 import axios from 'axios';
 import tippy from 'tippy.js';
+import {
+  apiUrl,
+} from './helpers';
 
-export async function getProductHuntPosts (productHuntRssUrl = 'https://www.producthunt.com/feed?category=undefined') {
-  const productHuntData = await axios.get(productHuntRssUrl, {
-    responseType: 'document',
-  })
+export async function getProductHuntPosts (productHuntRssUrl = `${apiUrl()}/product-hunt-posts`) {
+  const productHuntData = await axios.get(productHuntRssUrl)
   .then(response => {
-    console.log(response.data);
-    const entries = Array.from(response.data.querySelectorAll('entry'));
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(response.data, 'text/xml');
+    const entries = Array.from(xml.querySelectorAll('entry'));
     const phData = entries.map(entry => {
       // id, published, updated, title, link.href, content, author>name
       const content = entry.querySelector('content').innerHTML;
@@ -23,12 +25,16 @@ export async function getProductHuntPosts (productHuntRssUrl = 'https://www.prod
     });
     return phData;
   });
-  return productHuntData;
+  const returnData = [];
+  // limit to 10 items
+  for (let i = 0; i < 10; i+=1) {
+    returnData.push(productHuntData[i]);
+  }
+  return returnData;
 }
 
 export async function getProductHuntPostsMarkup () {
   const productHuntData = await getProductHuntPosts();
-  console.log(productHuntData);
   let idx = 0;
   const postsMarkup = productHuntData.map(post => {
     const listItemMarkup = `

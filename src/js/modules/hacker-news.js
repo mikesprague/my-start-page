@@ -1,12 +1,15 @@
 import axios from 'axios';
 import tippy from 'tippy.js';
+import {
+  apiUrl,
+} from './helpers';
 
-export async function getHackerNewsPosts (hackerNewsUrl = 'https://news.ycombinator.com/rss') {
-  const hackerNewsData = await axios.get(hackerNewsUrl, {
-    responseType: 'document',
-  })
+export async function getHackerNewsPosts (hackerNewsUrl = `${apiUrl()}/hacker-news-posts`) {
+  const hackerNewsData = await axios.get(hackerNewsUrl)
   .then(response => {
-    const items = Array.from(response.data.querySelectorAll('item'));
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(response.data, 'text/xml');
+    const items = Array.from(xml.querySelectorAll('item'));
     const hnData = items.map(item => {
       // title, link, pubDate, comments, description
       const title = item.querySelector('title').innerHTML;
@@ -20,7 +23,12 @@ export async function getHackerNewsPosts (hackerNewsUrl = 'https://news.ycombina
     });
     return hnData;
   });
-  return hackerNewsData;
+  const returnData = [];
+  // limit to 10 items
+  for (let i = 0; i < 10; i+=1) {
+    returnData.push(hackerNewsData[i]);
+  }
+  return returnData;
 }
 
 export async function getHackerNewsPostsMarkup () {
