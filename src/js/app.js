@@ -6,6 +6,9 @@ import {
   initClock,
 } from './modules/clock';
 import {
+  initGitHubPopup,
+} from './modules/github';
+import {
   initHackerNewsPopup,
 } from './modules/hacker-news';
 import {
@@ -38,6 +41,7 @@ const initApp = () => {
   initRedditPopup();
   initHackerNewsPopup();
   initProductHuntPopup();
+  initGitHubPopup();
 };
 
 document.onreadystatechange = async () => {
