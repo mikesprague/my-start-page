@@ -19,7 +19,7 @@ exports.handler = async (event, context, callback) => {
   // [ ] 1079798 - street art
   // [ ] 4332580 - space
   // [x] 535285 - starry nights/space
-  const unsplashCollections = '327760,219941,894,784236,1079798,535285';
+  const unsplashCollections = '327760,219941,894,784236,535285';
   // gets a random imagee from a nature collection with over 1200 images in it
   const unsplashApiurl = `https://api.unsplash.com/photos/random/?collections=${unsplashCollections}&orientation=landscape&count=5&client_id=${UNSPLASH_ACCESS_KEY}`;
 
