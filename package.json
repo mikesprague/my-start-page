@@ -1,6 +1,6 @@
 {
   "name": "start-page",
-  "version": "0.0.13",
+  "version": "0.1.0",
   "description": "Minimalist open source new tab extension for Chrome (no analytics or 3rd party tracking scripts used)",
   "private": true,
   "engines": {
