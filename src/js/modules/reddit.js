@@ -1,6 +1,9 @@
 import axios from 'axios';
+import tippy from 'tippy.js';
 
-export async function getRedditPosts (redditUrl = 'https://www.reddit.com/r/popular.json?limit=10') {
+const redditUrlPrefix = 'https://www.reddit.com';
+
+export async function getRedditPosts (redditUrl = `${redditUrlPrefix}/r/popular.json?limit=10`) {
   const redditData = await axios.get(redditUrl)
     .then(response => {
       const { children } = response.data.data;
@@ -19,11 +22,11 @@ export async function getRedditPostsMarkup () {
     const listItemMarkup = `
       <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''}">
         <small>
-          <a href="https://www.reddit.com/r/${post.subreddit}" target="_blank" rel="noopener">${post.subreddit}</a>
-          Posted by <a href="https://www.reddit.com/user/${post.author}/" target="_blank" rel="noopener">${post.author}</a>
+          <a href="${redditUrlPrefix}/r/${post.subreddit}" target="_blank" rel="noopener">/r/${post.subreddit}</a>
+          Posted by <a href="${redditUrlPrefix}/user/${post.author}/" target="_blank" rel="noopener">${post.author} <i class="fad fa-fw fa-user"></i></a>
         </small>
         <br>
-        <a href="https://www.reddit.com${post.permalink}" target="_blank" rel="noopener">${post.title}</a>
+        <a href="${redditUrlPrefix}${post.permalink}" target="_blank" rel="noopener">${post.title}</a>
       </li>
     `;
     idx += 1;
@@ -32,7 +35,12 @@ export async function getRedditPostsMarkup () {
 
   const mainTemplate = `
     <ul class="list-group posts-container">
-      <li class="list-group-item list-group-item-heading"><h4><i class="fab fa-fw fa-reddit-alien"></i> Reddit Popular Posts</h4></li>
+      <li class="list-group-item list-group-item-heading">
+        <h5>
+          <i class="fab fa-fw fa-reddit-alien"></i> Reddit Popular Posts
+          <small><a href="${redditUrlPrefix}/r/popular"><i class="fad fa-fw fa-external-link"></i> View on Reddit</a></small>
+        </h5>
+      </li>
       ${postsMarkup.join('\n')}
     </ul>
   `;
@@ -40,8 +48,16 @@ export async function getRedditPostsMarkup () {
   return mainTemplate;
 }
 
-export async function initRedditPosts () {
-  const redditHtml = await getRedditPostsMarkup();
-  const postsEl = document.querySelector('.posts');
-  postsEl.innerHTML = redditHtml;
+export async function initRedditPopup() {
+  const redditContent = await getRedditPostsMarkup();
+  const elForPopup = document.querySelector('.reddit-popup');
+  tippy(elForPopup, {
+    allowHTML: true,
+    interactive: true,
+    maxWidth: 'none',
+    trigger: 'click',
+    onShow(instance) {
+      instance.setContent(redditContent);
+    },
+  });
 }

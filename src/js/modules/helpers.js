@@ -32,7 +32,7 @@ import {
   faTint,
   faThermometerHalf,
   faMapMarkerAlt,
-
+  faExternalLink,
 } from '@fortawesome/pro-duotone-svg-icons';
 import { register } from 'register-service-worker';
 import tippy from 'tippy.js';
@@ -82,6 +82,7 @@ export function initIcons() {
     faTint,
     faThermometerHalf,
     faMapMarkerAlt,
+    faExternalLink,
   );
   dom.watch();
 }

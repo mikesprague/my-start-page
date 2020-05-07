@@ -14,8 +14,12 @@ import {
   initDesignQuote,
 } from './modules/quotes';
 import {
+  initRedditPopup,
+} from './modules/reddit';
+import {
   initWeather,
 } from './modules/weather';
+
 
 const initApp = () => {
   initServiceWorker();
@@ -25,6 +29,7 @@ const initApp = () => {
   initDesignQuote();
   initWeather();
   initTooltips();
+  initRedditPopup();
 };
 
 document.onreadystatechange = async () => {

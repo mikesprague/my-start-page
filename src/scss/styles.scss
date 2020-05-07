@@ -114,6 +114,7 @@ a {
 
   .content-icon {
     font-size: 2rem;
+    cursor: pointer !important;
   }
 }
 
@@ -130,20 +131,26 @@ a {
 }
 
 .posts-container {
+  max-height: 85vh;
+  overflow-x: scroll;
+
+  .tippy-content {
+    width: 85vw !important;
+  }
 
   .list-group,
   .list-group-item {
-    background-color: $color-black-ninety-percent;
+    background-color: $color-black;
     border: 0;
+    text-align: left;
   }
-  // .list-group-item.odd {
-  //   background-color: $color-black-sixty-percent;
-  // }
-  // .list-group-item-action:hover {
-  //   background-color: $color-black;
-  // }
-
-  // .list-group-item-heading {
-  //   background-color: $color-black-ninety-percent;
-  // }
+  .list-group-item.odd {
+    background-color: $color-black-sixty-percent;
+  }
+  .list-group-item-action:hover {
+    background-color: $color-black-ninety-percent;
+  }
+  .list-group-item-heading {
+    background-color: $color-black-ninety-percent;
+  }
 }
