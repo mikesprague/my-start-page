@@ -5,9 +5,12 @@ import {
   getData,
   setData,
 } from './data';
+import {
+  apiUrl,
+} from './helpers';
 
 export async function getDesignQuoteData() {
-  const designQuoteApiUrl = 'https://quotesondesign.com/wp-json/wp/v2/posts/?orderby=rand';
+  const designQuoteApiUrl = `${apiUrl()}/quotes`;
   const designQuoteData = await axios.get(designQuoteApiUrl)
   .then((response) => {
     // console.log(response.data);
