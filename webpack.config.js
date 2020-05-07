@@ -44,8 +44,8 @@ const webpackRules = [
               purgecss({
                 content: ['./src/*.html', './src/js/modules/*.js'],
                 fontFace: true,
-                whitelistPatterns: [/tippy/, /a/],
-                whitelistPatternsChildren: [/tippy/, /a/],
+                whitelistPatterns: [/tippy/, /a/, /list-group-item/, /list-group-item-action/],
+                whitelistPatternsChildren: [/tippy/, /a/, /list-group-item/, /list-group-item-action/],
               }),
             ];
           },

@@ -7,6 +7,8 @@ $color-white: #fff;
 $color-dark-gray: #333;
 $color-light-gray: #ddd;
 $color-black-forty-percent: rgba(0, 0, 0, .4);
+$color-black-sixty-percent: rgba(0, 0, 0, .6);
+$color-black-ninety-percent: rgba(0, 0, 0, .9);
 
 * {
   -moz-osx-font-smoothing: grayscale !important;
@@ -125,4 +127,23 @@ a {
   top: 0;
   width: 100%;
   z-index: -9999;
+}
+
+.posts-container {
+
+  .list-group,
+  .list-group-item {
+    background-color: $color-black-ninety-percent;
+    border: 0;
+  }
+  // .list-group-item.odd {
+  //   background-color: $color-black-sixty-percent;
+  // }
+  // .list-group-item-action:hover {
+  //   background-color: $color-black;
+  // }
+
+  // .list-group-item-heading {
+  //   background-color: $color-black-ninety-percent;
+  // }
 }
