@@ -6,10 +6,16 @@ import {
   initClock,
 } from './modules/clock';
 import {
+  initHackerNewsPopup,
+} from './modules/hacker-news';
+import {
   initIcons,
   initServiceWorker,
   initTooltips,
 } from './modules/helpers';
+import {
+  initProductHuntPopup,
+} from './modules/product-hunt';
 import {
   initDesignQuote,
 } from './modules/quotes';
@@ -30,6 +36,8 @@ const initApp = () => {
   initWeather();
   initTooltips();
   initRedditPopup();
+  initHackerNewsPopup();
+  initProductHuntPopup();
 };
 
 document.onreadystatechange = async () => {
