@@ -6,6 +6,15 @@
 
 Minimalist open source new tab extension (no analytics or 3rd party tracking scripts used)
 
+## Contents
+
+- [About](#about)
+- [Install](#install)
+- [Demo](#demo)
+- [Screenshots](#screenshots)
+- [Uses](#uses)
+- [License](#license)
+
 ## About
 
 - Layout/design based on what I liked from the Momentum browser extension
