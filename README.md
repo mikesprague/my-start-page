@@ -19,10 +19,10 @@ Minimalist open source new tab extension (no analytics or 3rd party tracking scr
 
 - Layout/design based on what I liked from the Momentum browser extension
 - Date and time with greeting
-- Current temp/conditions ([powered by Dark Sky](https://darksky.net/poweredby/))
+- Current temp/conditions (powered by [Dark Sky](https://darksky.net/poweredby/))
 - Random quote (from [Quotes on Design API](https://quotesondesign.com/api/))
 - Random background image (from [Unsplash API](https://unsplash.com/developers))
-- Top posts and links to external content
+- Top posts from some useful sites
   - Reddit Popular Posts
   - GitHub Trending Repositories
   - Hacker News Top Posts
@@ -51,12 +51,12 @@ Demo available as a progressive web app (PWA):
 
 - Demo hosting - [Netlify](https://www.netlify.com)
 - Serveless functions used for backend API - [Netlify Functions](https://www.netlify.com/products/functions/)
-- Dependency monitoring for security and updates - [Snyk](https://github.com/snyk/snyk)
+- Dependency monitoring - [Snyk](https://github.com/snyk/snyk)
 - Icons - [FontAwesome](https://fontawesome.com/)
 - Tooltips and content popups - [tippy.js](https://github.com/atomiks/tippyjs)
-- Date/time manipulation and math - [dayjs](https://github.com/iamkun/dayjs)
-- CSS Framework bc I am lazy - [bootstrap](https://github.com/twbs/bootstrap)
-  - NOTE: unused CSS removed during webpack build
+- Date/time lib - [dayjs](https://github.com/iamkun/dayjs)
+- CSS framework (bc I am lazy) - [bootstrap](https://github.com/twbs/bootstrap)
+  - NOTE: unused CSS bloat removed during webpack build
 - HTTP lib/client - [axios](https://github.com/axios/axios/)
 - Open source license compliance monitoring - [FOSSA](https://fossa.com/)
 
