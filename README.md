@@ -4,7 +4,7 @@
 
 # My Start Page
 
-Minimalist open source new tab extension for Chrome (no analytics or 3rd party tracking scripts used)
+Minimalist open source new tab extension (no analytics or 3rd party tracking scripts used)
 
 ## About
 
@@ -12,12 +12,13 @@ Minimalist open source new tab extension for Chrome (no analytics or 3rd party t
 - Date and time with greeting
 - Current temp/conditions ([powered by Dark Sky](https://darksky.net/poweredby/))
 - Random quote (from [Quotes on Design API](https://quotesondesign.com/api/))
-- Random background image with attribution (from [Unsplash API](https://unsplash.com/developers))
-- Useful links
-  - GitHub trending repositories
-  - Hacker News front page
-  - Product Hunt front page
-  - Reddit popular posts
+- Random background image (from [Unsplash API](https://unsplash.com/developers))
+- Top posts and links to external content
+  - Reddit Popular Posts
+  - GitHub Trending Repositories
+  - Hacker News Top Posts
+  - Product Hunt Top Posts
+- NO analytics/3rd party tracking scripts used
 
 ### Install
 
