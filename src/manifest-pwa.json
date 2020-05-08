@@ -45,9 +45,9 @@
     "geolocation",
     "storage",
     "unlimitedStorage",
-    "https://my-start-page.netlify.app/.netlify/functions/*"
+    "https://my-start/page/*"
   ],
-  "homepage_url": "https://my-start-page.netlify.app/",
+  "homepage_url": "https://my-start.page/",
   "scope": "/",
   "start_url": "/",
   "display": "standalone",

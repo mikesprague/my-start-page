@@ -25,7 +25,7 @@ Availabile to install via <a href="https://chrome.google.com/webstore/detail/pjm
 
 ## Demo/Screenshot
 
-Demo: [https://my-start-page.netlify.app](https://my-start-page.netlify.app)</a>
+Demo: [https://my-start.page](https://my-start.page)</a>
 
 ![My Start Page Screenshot One](./screenshot-1.png "My Start Page Screenshot One")
 ![My Start Page Screenshot Two](./screenshot-2.png "My Start Page Screenshot Two")

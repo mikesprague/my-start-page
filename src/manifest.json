@@ -21,6 +21,6 @@
     "geolocation",
     "storage",
     "unlimitedStorage",
-    "https://my-start-page.netlify.app/.netlify/functions/*"
+    "https://my-start.page/*"
   ]
 }

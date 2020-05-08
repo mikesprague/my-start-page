@@ -45,7 +45,7 @@ import {
 
 export function apiUrl () {
   if (window.location.origin.includes('-extension://')) {
-    return 'https://my-start-page.netlify.app/.netlify/functions';
+    return 'https://my-start.page/.netlify/functions';
   }
   if (window.location.hostname === 'localhost') {
     return 'http://localhost:9000';
