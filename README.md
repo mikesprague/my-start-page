@@ -20,16 +20,26 @@ Minimalist open source new tab extension (no analytics or 3rd party tracking scr
   - Product Hunt Top Posts
 - NO analytics/3rd party tracking scripts used
 
-### Install
+## Install
 
-Availabile to install via <a href="https://chrome.google.com/webstore/detail/pjmobojmaaemcnoiccepkecplpddaaaa" target="_blank" rel="noopener">Chrome Store</a>
+- [Chrome Store](https://chrome.google.com/webstore/detail/pjmobojmaaemcnoiccepkecplpddaaaa)
+- Firefox - coming soon (works, not currently listed)
 
-## Demo/Screenshot
+## Demo
 
-Demo: [https://my-start.page](https://my-start.page)</a>
+Demo available as a progressive web app (PWA):
+
+- [https://my-start.page](https://my-start.page)
+
+## Screenshots
 
 ![My Start Page Screenshot One](./screenshot-1.png "My Start Page Screenshot One")
 ![My Start Page Screenshot Two](./screenshot-2.png "My Start Page Screenshot Two")
+
+## Uses
+
+- Demo hosted by [Netlify](https://www.netlify.com)
+- Serveless functions used for backend powered by [Netlify Functions](https://www.netlify.com/products/functions/)
 
 ## License
 
