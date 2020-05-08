@@ -38,14 +38,14 @@ export async function getProductHuntPostsMarkup () {
   let idx = 0;
   const postsMarkup = productHuntData.map(post => {
     const listItemMarkup = `
-      <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''}">
+      <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white">
         <a href="${post.link}" title="View Post: ${post.title}" target="_blank" rel="noopener">
-          ${post.title}
-          <br>
-          <small>
-            Posted ${post.published}
-          </small>
+          <strong>${post.title}</strong>
         </a>
+        <br>
+        <small>
+          <i class="fad fa-fw fa-calendar"></i> ${post.published}
+        </small>
       </li>
     `;
     idx += 1;

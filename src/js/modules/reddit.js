@@ -20,13 +20,14 @@ export async function getRedditPostsMarkup () {
   let idx = 0;
   const postsMarkup = redditData.map(post => {
     const listItemMarkup = `
-      <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''}">
+      <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white">
+        <a href="${redditUrlPrefix}${post.permalink}" title="View Post: ${post.title}" target="_blank" rel="noopener"><strong>${post.title}</strong></a>
+        <br>
         <small>
           <a href="${redditUrlPrefix}/r/${post.subreddit}" title="View Subreddit: /r/${post.subreddit}" target="_blank" rel="noopener">/r/${post.subreddit}</a>
-          Posted by <a href="${redditUrlPrefix}/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener">${post.author} <i class="fad fa-fw fa-user"></i></a>
+          &nbsp;&nbsp;
+          <a href="${redditUrlPrefix}/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener"><i class="fad fa-fw fa-user"></i></a> ${post.author}</a>
         </small>
-        <br>
-        <a href="${redditUrlPrefix}${post.permalink}" title="View Post: ${post.title}" target="_blank" rel="noopener">${post.title}</a>
       </li>
     `;
     idx += 1;

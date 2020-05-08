@@ -5,7 +5,7 @@ import {
 } from './helpers';
 
 export async function getTrendingRepos (dataUrl = `${apiUrl()}/github-trending-repos`) {
-  const returnData = []
+  const returnData = [];
   const pageData = await axios.get(dataUrl)
     .then(response => {
       // limit to 10 items
@@ -24,14 +24,23 @@ export async function getGitHubReposMarkup () {
     const listItemMarkup = `
       <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white">
         <a href="${repo.link}" title="View Post: ${repo.title}" target="_blank" rel="noopener">
-          ${repo.title}
+          <strong>${repo.title}</strong>
         </a>
         <br>
         ${repo.description}
-        <br>
-        <small>
-          ${repo.starsToday}
-        </small>
+        <div class="row">
+          <div class="col text-left">
+            <small>
+              ${repo.languageMarkup} |
+              <i class="fad fa-fw fa-star"></i> ${repo.stars} |
+              <i class="fad fa-fw fa-share-alt fa-rotate-270"></i> ${repo.forks}
+            </small>
+          </div>
+          <div class="col text-right">
+            <small>
+              <i class="fad fa-fw fa-share-alt fa-rotate-270"></i> ${repo.starsToday}
+            </small>
+          </div>
       </li>
     `;
     idx += 1;

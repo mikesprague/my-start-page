@@ -154,3 +154,12 @@ a {
     background-color: $color-black-ninety-percent;
   }
 }
+
+.repo-language-color {
+  border-radius: 50%;
+  display: inline-block;
+  height: .75rem;
+  margin-right: .25rem;
+  vertical-align: middle;
+  width: .75rem;
+}
