@@ -38,8 +38,16 @@ Demo available as a progressive web app (PWA):
 
 ## Uses
 
-- Demo hosted by [Netlify](https://www.netlify.com)
-- Serveless functions used for backend powered by [Netlify Functions](https://www.netlify.com/products/functions/)
+- Demo hosting - [Netlify](https://www.netlify.com)
+- Serveless functions used for backend API - [Netlify Functions](https://www.netlify.com/products/functions/)
+- Dependency monitoring for security and updates - [Snyk](https://github.com/snyk/snyk)
+- Icons - [FontAwesome](https://fontawesome.com/)
+- Tooltips and content popups - [tippy.js](https://github.com/atomiks/tippyjs)
+- Date/time manipulation and math - [dayjs](https://github.com/iamkun/dayjs)
+- CSS Framework bc I am lazy - [bootstrap](https://github.com/twbs/bootstrap)
+  - NOTE: unused CSS removed during webpack build
+- HTTP lib/client - [axios](https://github.com/axios/axios/)
+- Open source license monitoring - [FOSSA](https://fossa.com/)
 
 ## License
 
