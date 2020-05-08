@@ -47,7 +47,7 @@ Demo available as a progressive web app (PWA):
 - CSS Framework bc I am lazy - [bootstrap](https://github.com/twbs/bootstrap)
   - NOTE: unused CSS removed during webpack build
 - HTTP lib/client - [axios](https://github.com/axios/axios/)
-- Open source license monitoring - [FOSSA](https://fossa.com/)
+- Open source license compliance monitoring - [FOSSA](https://fossa.com/)
 
 ## License
 
