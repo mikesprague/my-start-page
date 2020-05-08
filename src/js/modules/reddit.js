@@ -39,6 +39,7 @@ export async function getRedditPostsMarkup () {
       <li class="list-group-item list-group-item-heading">
         <h5>
           <i class="fab fa-fw fa-reddit-alien"></i> Reddit Popular Posts
+          &nbsp;
           <small><a href="${redditUrlPrefix}/r/popular" title="View on Reddit" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Reddit</a></small>
         </h5>
       </li>

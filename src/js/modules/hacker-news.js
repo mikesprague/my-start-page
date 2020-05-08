@@ -55,6 +55,7 @@ export async function getHackerNewsPostsMarkup () {
       <li class="list-group-item list-group-item-heading">
         <h5>
           <i class="fab fa-fw fa-hacker-news"></i> Hacker News Top Posts
+          &nbsp;
           <small><a href="https://news.ycombinator.com/" title="View on Hacker News" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Hacker News</a></small>
         </h5>
       </li>

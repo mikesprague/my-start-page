@@ -52,6 +52,7 @@ export async function getGitHubReposMarkup () {
       <li class="list-group-item list-group-item-heading">
         <h5>
           <i class="fab fa-fw fa-github"></i> GitHub Trending Repositories
+          &nbsp;
           <small><a href="https://www.github.com/trending" title="View on GitHub" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on GitHub</a></small>
         </h5>
       </li>

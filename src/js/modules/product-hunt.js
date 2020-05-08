@@ -57,6 +57,7 @@ export async function getProductHuntPostsMarkup () {
       <li class="list-group-item list-group-item-heading">
         <h5>
           <i class="fab fa-fw fa-product-hunt"></i> Product Hunt Top Posts
+          &nbsp;
           <small><a href="https://producthunt.com/" title="View on Product Hunt" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Product Hunt</a></small>
         </h5>
       </li>
