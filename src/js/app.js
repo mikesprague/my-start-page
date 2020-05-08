@@ -34,14 +34,14 @@ const initApp = () => {
   initServiceWorker();
   setImageAndMetaData();
   initClock(5);
-  initIcons();
   initDesignQuote();
   initWeather();
-  initTooltips();
   initRedditPopup();
   initHackerNewsPopup();
   initProductHuntPopup();
   initGitHubPopup();
+  initIcons();
+  initTooltips();
 };
 
 document.onreadystatechange = async () => {
