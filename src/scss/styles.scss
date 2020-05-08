@@ -144,14 +144,24 @@ a {
     border: 0;
     text-align: left;
   }
-  .list-group-item.odd {
-    background-color: $color-black-sixty-percent;
+
+  .list-group-item-action {
+    &:hover {
+      background-color: $color-black-ninety-percent;
+    }
   }
-  .list-group-item-action:hover {
-    background-color: $color-black-ninety-percent;
-  }
+
   .list-group-item-heading {
     background-color: $color-black-ninety-percent;
+
+    small {
+      font-size: 1rem;
+      font-weight: normal;
+    }
+  }
+
+  .odd {
+    background-color: $color-black-sixty-percent;
   }
 }
 
