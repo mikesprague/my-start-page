@@ -44,10 +44,11 @@ export async function getUnsplashImage() {
   return apiData;
 }
 
-export const setImageAndMetaData = async () => {
+export async function setImageAndMetaData () {
   const getAllBgImages = await getUnsplashImage();
-  const randomImageNumber = Math.floor(Math.random() * 4);
-  const imageData = getAllBgImages[randomImageNumber];
+  const bgNum = getData('bgCurrent') || Math.floor(Math.random() * 4);
+  const imageData = getAllBgImages[bgNum];
+  setData('bgCurrent', bgNum);
   const {
     title,
     name,
@@ -82,3 +83,26 @@ export const setImageAndMetaData = async () => {
     </span>
   `;
 };
+
+export async function rotateBgImage () {
+  const currentBgNum = getData('bgCurrent');
+  const nextBgNum = currentBgNum === 4 ? 0 : currentBgNum + 1;
+  setData('bgCurrent', nextBgNum);
+  await setImageAndMetaData();
+}
+
+export function initRotateBgImage () {
+  const rotateLink = document.querySelector('.rotate-bg');
+  // const rotateIcon = document.querySelector('.fa-sync-alt');
+  rotateLink.addEventListener('click', async (event) => {
+    event.preventDefault();
+    // rotateIcon.classList.add('fa-spin');
+    await rotateBgImage();
+    // rotateIcon.classList.remove('fa-spin');
+  });
+}
+
+export async function initBgImages() {
+  await setImageAndMetaData();
+  initRotateBgImage();
+}

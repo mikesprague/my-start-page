@@ -1,6 +1,6 @@
 import '../scss/styles.scss';
 import {
-  setImageAndMetaData,
+  initBgImages,
 } from './modules/background-images';
 import {
   initClock,
@@ -32,7 +32,7 @@ import {
 
 const initApp = () => {
   initServiceWorker();
-  setImageAndMetaData();
+  initBgImages();
   initClock(5);
   initDesignQuote();
   initWeather();

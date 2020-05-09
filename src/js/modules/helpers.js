@@ -36,6 +36,7 @@ import {
   faStar,
   faShareAlt,
   faCalendar,
+  faSyncAlt,
 } from '@fortawesome/pro-duotone-svg-icons';
 import { register } from 'register-service-worker';
 import tippy from 'tippy.js';
@@ -103,6 +104,7 @@ export function initIcons() {
     faStar,
     faShareAlt,
     faCalendar,
+    faSyncAlt,
   );
   dom.watch();
 }
