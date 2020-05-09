@@ -20,25 +20,42 @@ export async function getTrendingRepos (dataUrl = `${apiUrl()}/github-trending-r
 export async function getGitHubReposMarkup () {
   const gitHubData = await getTrendingRepos();
   let idx = 0;
+  const starsIcon = '<i class="fad fa-fw fa-star"></i>';
+  const forksIcon = '<i class="fad fa-fw fa-share-alt fa-rotate-270"></i>';
   const reposMarkup = gitHubData.map(repo => {
+    const {
+      title,
+      description,
+      stars,
+      starsLink,
+      forks,
+      forksLink,
+      starsToday,
+      languageStyle,
+      languageName,
+      link,
+    } = repo;
+    const languageMarkup = languageName ? `<span class="repo-language-color" style="${languageStyle}"></span> ${languageName} &nbsp;&nbsp;` : '';
+    const starsMarkup = stars.trim().length ? `<a href="${starsLink}" target="_blank" rel="noopener">${starsIcon} ${repo.stars}</a> &nbsp;&nbsp;` : '';
+    const forksMarkup = forks.trim().length ? `<a href="${forksLink}">${forksIcon} ${repo.forks}</a>` : '';
     const listItemMarkup = `
       <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white">
-        <a href="${repo.link}" title="View Post: ${repo.title}" target="_blank" rel="noopener">
-          <strong>${repo.title}</strong>
+        <a href="${link}" title="View Post: ${title}" target="_blank" rel="noopener">
+          <strong>${title}</strong>
         </a>
         <br>
-        ${repo.description}
+        ${description}
         <div class="row">
           <div class="col text-left">
             <small>
-              ${repo.languageMarkup} |
-              <i class="fad fa-fw fa-star"></i> ${repo.stars} |
-              <i class="fad fa-fw fa-share-alt fa-rotate-270"></i> ${repo.forks}
+              ${languageMarkup}
+              ${starsMarkup}
+              ${forksMarkup}
             </small>
           </div>
           <div class="col text-right">
             <small>
-              <i class="fad fa-fw fa-share-alt fa-rotate-270"></i> ${repo.starsToday}
+            ${starsIcon} ${starsToday}
             </small>
           </div>
       </li>
