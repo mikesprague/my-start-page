@@ -19,51 +19,6 @@ export async function getUnsplashImagesData() {
   return bgImagesData;
 }
 
-const normalizeImageData = (apiData) => {
-  const returnData = apiData.map((imageData) => {
-    const {
-      alt_description: altDescription,
-      description,
-      links,
-      location,
-      urls,
-      user,
-    } = imageData || null;
-    const {
-      html: imageLink,
-    } = links || null;
-    const {
-      title,
-      name,
-    } = location || null;
-    const {
-      regular: imageUrl,
-      small: imageSmallUrl,
-      thumb: imageThumbUrl,
-    } = urls || null;
-    const {
-      name: userName,
-      links: userLinks,
-    } = user || null;
-    const {
-      html: userLink,
-    } = userLinks || null;
-    return {
-      altDescription,
-      description,
-      title,
-      name,
-      imageLink,
-      imageUrl,
-      imageSmallUrl,
-      imageThumbUrl,
-      userLink,
-      userName,
-    };
-  });
-  return returnData;
-};
-
 export async function getUnsplashImage() {
   const lastUpdated = getData('bgLastUpdated');
   let apiData = null;
@@ -71,7 +26,6 @@ export async function getUnsplashImage() {
     const nextUpdateTime = dayjs(lastUpdated).add(60, 'minute');
     if (dayjs().isAfter(nextUpdateTime) || lastUpdated === null) {
       apiData = await getUnsplashImagesData();
-      apiData = normalizeImageData(apiData);
       clearData('bgData');
       clearData('bgLastUpdated');
       setData('bgData', apiData);
@@ -81,7 +35,6 @@ export async function getUnsplashImage() {
     }
   } else {
     apiData = await getUnsplashImagesData();
-    apiData = normalizeImageData(apiData);
     clearData('bgData');
     clearData('bgLastUpdated');
     setData('bgData', apiData);
