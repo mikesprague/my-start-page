@@ -97,6 +97,7 @@ export function initTooltips() {
   tippy('[data-tippy-content]', {
     allowHTML: true,
     placement: 'left',
+    interactive: true,
   });
 }
 
