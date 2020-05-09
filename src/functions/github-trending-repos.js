@@ -17,6 +17,8 @@ exports.handler = async (event, context, callback) => {
       const starsSelector = 'div.f6.text-gray.mt-2 > a:nth-child(2)';
       const forksSelector = 'div.f6.text-gray.mt-2 > a:nth-child(3)';
       const starsTodaySelector = 'div.f6.text-gray.mt-2 > span.d-inline-block.float-sm-right';
+      const languageColorSelector = 'div.f6.text-gray.mt-2 > span.d-inline-block.ml-0.mr-3 > .repo-language-color';
+      const languageNameSelector = 'div.f6.text-gray.mt-2 > span.d-inline-block.ml-0.mr-3 > span:nth-child(2)';
       const $ = cheerio.load(markup);
       const returnData = [];
       $(rowSelector).each((i, elem) => {
@@ -28,11 +30,8 @@ exports.handler = async (event, context, callback) => {
         const stars = $(elem).find(starsSelector).text().replace(/\r?\n|\r/, '').trim();
         const forks = $(elem).find(forksSelector).text().replace(/\r?\n|\r/, '').trim();
         const starsToday = $(elem).find(starsTodaySelector).text().replace(/\r?\n|\r/, '').trim();
-        const language = $(elem).find(languageSelector).html();
-        let languageMarkup = '';
-        if (language) {
-          languageMarkup = language.replace(/\r?\n|\r/, '').trim();
-        }
+        const languageStyle = $(elem).find(languageColorSelector).attr('style') ? $(elem).find(languageColorSelector).attr('style') : null;
+        const languageName = languageStyle ? $(elem).find(languageNameSelector).text().replace(/\r?\n|\r/, '').trim() : null;
 
         returnData.push({
           title,
@@ -42,7 +41,8 @@ exports.handler = async (event, context, callback) => {
           forks,
           forksLink,
           starsToday,
-          languageMarkup,
+          languageStyle,
+          languageName,
           link,
         });
       });
