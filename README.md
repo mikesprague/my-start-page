@@ -53,6 +53,7 @@ Demo available as a progressive web app (PWA):
 - Serveless functions used for backend API - [Netlify Functions](https://www.netlify.com/products/functions/)
 - Dependency monitoring - [Snyk](https://github.com/snyk/snyk)
 - Icons - [FontAwesome](https://fontawesome.com/)
+- Font ([Roboto Slab](https://fonts.google.com/specimen/Roboto+Slab?query=roboto+slab)) - [Google Fonts](https://fonts.google.com/)
 - Tooltips and content popups - [tippy.js](https://github.com/atomiks/tippyjs)
 - Date/time lib - [dayjs](https://github.com/iamkun/dayjs)
 - CSS framework (bc I am lazy) - [bootstrap](https://github.com/twbs/bootstrap)
