@@ -43,11 +43,25 @@ import {
   resetData,
 } from './data';
 
-export function apiUrl () {
+export function isExtension () {
   if (window.location.origin.includes('-extension://')) {
+    return true;
+  }
+  return false;
+}
+
+export function isDev () {
+  if (window.location.hostname === 'localhost') {
+    return true;
+  }
+  return false;
+}
+
+export function apiUrl () {
+  if (isExtension()) {
     return 'https://my-start.page/.netlify/functions';
   }
-  if (window.location.hostname === 'localhost') {
+  if (isDev()) {
     return 'http://localhost:9000';
   }
   return `https://${window.location.hostname}/.netlify/functions`;
