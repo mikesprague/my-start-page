@@ -33,7 +33,7 @@ import {
 
 const initApp = async () => {
   initServiceWorker();
-  await initBgImages();
+  initBgImages();
   initClock(5);
   initDesignQuote();
   initWeather();
@@ -43,7 +43,6 @@ const initApp = async () => {
   initGitHubPopup();
   initIcons();
   initTooltips();
-  preloadBgImages();
 };
 
 document.onreadystatechange = async () => {

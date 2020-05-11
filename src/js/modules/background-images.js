@@ -114,4 +114,5 @@ export function initRotateBgImage () {
 export async function initBgImages() {
   await setImageAndMetaData();
   initRotateBgImage();
+  preloadBgImages();
 }
