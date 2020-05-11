@@ -102,12 +102,12 @@ export async function rotateBgImage () {
 
 export function initRotateBgImage () {
   const rotateLink = document.querySelector('.rotate-bg');
-  const rotateIcon = document.querySelector('i.fa-sync-alt');
+  // const rotateIcon = document.querySelector('i.fa-sync-alt');
   rotateLink.addEventListener('click', async (event) => {
     event.preventDefault();
-    rotateIcon.classList.add('fa-spin');
+    // rotateIcon.classList.add('fa-spin');
     await rotateBgImage();
-    rotateIcon.classList.remove('fa-spin');
+    // rotateIcon.classList.remove('fa-spin');
   });
 }
 
