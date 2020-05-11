@@ -14,15 +14,15 @@ exports.handler = async (event, context, callback) => {
       return response.data;
     }).catch((error) => {
       console.error(error);
-      callback(null, {
+      return {
         statusCode: 500,
         headers: callbackHeaders,
         body: JSON.stringify(error),
-      });
+      };
     });
-  callback(null, {
+  return {
     statusCode: 200,
     headers: callbackHeaders,
     body: postsData,
-  });
+  };
 };

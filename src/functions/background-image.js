@@ -73,17 +73,17 @@ exports.handler = async (event, context, callback) => {
       return response;
     }).catch((error) => {
       console.error(error);
-      callback(null, {
+      return {
         statusCode: 500,
         headers: callbackHeaders,
         body: JSON.stringify(error),
-      });
+      };
     });
 
   const returnData = normalizeImageData(imageData.data);
-  callback(null, {
+  return {
     statusCode: 200,
     headers: callbackHeaders,
     body: JSON.stringify(returnData),
-  });
+  };
 };
