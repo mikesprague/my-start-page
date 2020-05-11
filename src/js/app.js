@@ -1,6 +1,7 @@
 import '../scss/styles.scss';
 import {
   initBgImages,
+  preloadBgImages,
 } from './modules/background-images';
 import {
   initClock,
@@ -30,9 +31,9 @@ import {
 } from './modules/weather';
 
 
-const initApp = () => {
+const initApp = async () => {
   initServiceWorker();
-  initBgImages();
+  await initBgImages();
   initClock(5);
   initDesignQuote();
   initWeather();
@@ -42,6 +43,7 @@ const initApp = () => {
   initGitHubPopup();
   initIcons();
   initTooltips();
+  preloadBgImages();
 };
 
 document.onreadystatechange = async () => {

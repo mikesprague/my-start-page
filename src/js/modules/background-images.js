@@ -44,6 +44,15 @@ export async function getUnsplashImage() {
   return apiData;
 }
 
+export async function preloadBgImages () {
+  const bgImagesData = getData('bgData');
+  const bgPromises = bgImagesData.map(bgImageData => {
+    const bgImage = axios.get(bgImageData.imageUrl);
+    return bgImage;
+  });
+  return bgPromises;
+}
+
 export async function setImageAndMetaData () {
   const getAllBgImages = await getUnsplashImage();
   const bgNum = getData('bgCurrent') || 0;
@@ -86,7 +95,7 @@ export async function setImageAndMetaData () {
 
 export async function rotateBgImage () {
   const currentBgNum = getData('bgCurrent') || 0;
-  const nextBgNum = currentBgNum + 1 >= 10 ? 0 : currentBgNum + 1;
+  const nextBgNum = currentBgNum + 1 >= 5 ? 0 : currentBgNum + 1;
   setData('bgCurrent', nextBgNum);
   await setImageAndMetaData();
 }
