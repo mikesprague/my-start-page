@@ -1,7 +1,6 @@
 import '../scss/styles.scss';
 import {
   initBgImages,
-  preloadBgImages,
 } from './modules/background-images';
 import {
   initClock,
@@ -14,6 +13,7 @@ import {
 } from './modules/hacker-news';
 import {
   initIcons,
+  initPwaLinks,
   initServiceWorker,
   initTooltips,
 } from './modules/helpers';
@@ -31,7 +31,7 @@ import {
 } from './modules/weather';
 
 
-const initApp = async () => {
+const initApp = () => {
   initServiceWorker();
   initBgImages();
   initClock(5);
@@ -42,10 +42,11 @@ const initApp = async () => {
   initProductHuntPopup();
   initGitHubPopup();
   initIcons();
+  initPwaLinks();
   initTooltips();
 };
 
-document.onreadystatechange = async () => {
+document.onreadystatechange = () => {
   if (document.readyState === 'interactive') {
     // code goes here
     initApp();
