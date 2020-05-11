@@ -41,7 +41,6 @@
     "newtab": "index.html"
   },
   "permissions": [
-    "cookies",
     "geolocation",
     "storage",
     "unlimitedStorage",
