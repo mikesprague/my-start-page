@@ -4,7 +4,7 @@
 
 # My Start Page
 
-Minimalist open source new tab extension (no analytics or 3rd party tracking scripts used)
+Open source new tab extension (no analytics or 3rd party tracking scripts used)
 
 ## Contents
 
