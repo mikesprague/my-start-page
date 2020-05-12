@@ -44,6 +44,38 @@ async function geolocationError(error) {
   console.error(error);
 }
 
+const populateHourlyData = (data) => {
+  const numHours = 5;
+  let hoursMarkup = '';
+  for (let i = 0; i < numHours; i += 1) {
+    const currentHour = i + 1;
+    const {
+      apparentTemperature,
+      icon,
+      summary,
+      temperature,
+      time,
+    } = data[currentHour];
+    const hourlyIconClass = getWeatherIcon(icon);
+    const timeFormatted = dayjs.unix(time).format('ha');
+    const hourTemplate = `
+      <li class="list-inline-item text-center">
+        <strong>${timeFormatted}</strong><br>
+        <i class="${hourlyIconClass}"></i><br>
+        ${Math.round(temperature)}&deg;
+      </li>
+    `;
+    hoursMarkup += hourTemplate;
+  }
+  const finalMarkup = `
+    <hr>
+    <ul class="list-inline">
+      ${hoursMarkup}
+    </ul>
+  `;
+  return finalMarkup;
+};
+
 export function populateWeatherAndLocation(weatherAndLocationData) {
   const locationEl = document.querySelector('.weather-location');
   const tooltipEl = document.querySelector('.weather-tooltip');
@@ -57,13 +89,17 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
     summary,
     temperature,
   } = weatherAndLocationData.weather.currently;
+  const hourlyMarkup = populateHourlyData(weatherAndLocationData.weather.hourly.data);
   const weatherIconClass = getWeatherIcon(icon);
   const tooltipString = `
-    <i class="fad fa-fw fa-map-marker-alt"></i> ${locationName}
-    <br>
-    <i class="${weatherIconClass}"></i> ${summary}
-    <br>
-    <i class="fad fa-fw fa-thermometer-half"></i> Feels Like ${Math.round(apparentTemperature)}&deg;
+    <div class="text-center">
+      <i class="fad fa-fw fa-map-marker-alt"></i> ${locationName}
+      <br>
+      <i class="${weatherIconClass}"></i> ${summary}
+      <br>
+      <i class="fad fa-fw fa-thermometer-half"></i> Feels Like ${Math.round(apparentTemperature)}&deg;
+    </div>
+    ${hourlyMarkup}
   `;
 
   weatherTempEl.innerHTML = `${Math.round(temperature)}&deg;`;
