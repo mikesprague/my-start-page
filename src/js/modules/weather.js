@@ -46,7 +46,7 @@ async function geolocationError(error) {
 
 export function populateWeatherAndLocation(weatherAndLocationData) {
   const locationEl = document.querySelector('.weather-location');
-  const iconAndTempEl = document.querySelector('.icon-and-temp');
+  const tooltipEl = document.querySelector('.weather-tooltip');
   const weatherTempEl = document.querySelector('.weather-temp');
   const weatherIcon = document.querySelector('.weather-icon');
   const { locationName } = weatherAndLocationData.location;
@@ -67,7 +67,7 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
   `;
 
   weatherTempEl.innerHTML = `${Math.round(temperature)}&deg;`;
-  iconAndTempEl.setAttribute('data-tippy-content', tooltipString);
+  tooltipEl.setAttribute('data-tippy-content', tooltipString);
   initTooltips();
   weatherIcon.removeAttribute('class');
   weatherIcon.setAttribute('class', `${weatherIconClass} weather-icon`);
