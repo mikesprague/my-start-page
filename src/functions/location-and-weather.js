@@ -8,18 +8,18 @@ exports.handler = async (event, context, callback) => {
   };
 
   if (!lat) {
-    callback(null, {
-      statusCode: 400,
+    return {
       headers: callbackHeaders,
+      statusCode: 400,
       body: 'Missing "lat" parameter',
-    });
+    };
   }
   if (!lng) {
-    callback(null, {
-      statusCode: 400,
+    return {
       headers: callbackHeaders,
+      statusCode: 400,
       body: 'Missing "lng" parameter',
-    });
+    };
   }
 
   const {
@@ -64,11 +64,11 @@ exports.handler = async (event, context, callback) => {
     })
     .catch((err) => {
       console.log(err);
-      callback(console.error, {
-        statusCode: 500,
+      return {
         headers: callbackHeaders,
+        statusCode: 500,
         body: JSON.stringify(err),
-      });
+      };
     });
 
   const weatherPromise = await axios.get(weatherApiUrl)
@@ -79,19 +79,19 @@ exports.handler = async (event, context, callback) => {
       return weatherData;
     })
     .catch((err) => {
-      callback(console.error, {
-        statusCode: 500,
+      return {
         headers: callbackHeaders,
+        statusCode: 500,
         body: JSON.stringify(err),
-      });
+      };
     });
 
-  callback(null, {
-    statusCode: 200,
+  return {
     headers: callbackHeaders,
+    statusCode: 200,
     body: JSON.stringify({
       location: geocodePromise.location,
       weather: weatherPromise.weather,
     }),
-  });
+  };
 };
