@@ -68,8 +68,7 @@ const populateHourlyData = (data) => {
     hoursMarkup += hourTemplate;
   }
   const finalMarkup = `
-    <hr>
-    <ul class="list-inline">
+    <ul class="list-inline border-top">
       ${hoursMarkup}
     </ul>
   `;
@@ -92,12 +91,12 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
   const hourlyMarkup = populateHourlyData(weatherAndLocationData.weather.hourly.data);
   const weatherIconClass = getWeatherIcon(icon);
   const tooltipString = `
-    <div class="text-center">
+    <div class="text-center mb-2">
       <i class="fad fa-fw fa-map-marker-alt"></i> ${locationName}
       <br>
       <i class="${weatherIconClass}"></i> ${summary}
       <br>
-      <i class="fad fa-fw fa-thermometer-half"></i> Feels Like ${Math.round(apparentTemperature)}&deg;
+      <i class="fad fa-fw fa-thermometer-half"></i> ${Math.round(temperature)}&deg; (feels like ${Math.round(apparentTemperature)}&deg;)
     </div>
     ${hourlyMarkup}
   `;
