@@ -84,6 +84,7 @@ a {
 }
 
 .weather-container {
+  cursor: default;
 
   .weather-location {
     font-weight: 300;
@@ -146,6 +147,8 @@ a {
   }
 
   .list-group-item-action {
+    cursor: default;
+
     &:hover {
       background-color: $color-black-ninety-percent;
     }
@@ -153,6 +156,7 @@ a {
 
   .list-group-item-heading {
     background-color: $color-black-ninety-percent;
+    cursor: default;
 
     small {
       font-size: 1rem;
