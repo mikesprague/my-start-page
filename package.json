@@ -1,7 +1,7 @@
 {
-  "name": "start-page",
-  "version": "0.2.1",
-  "description": "Minimalist open source new tab extension (no analytics or 3rd party tracking scripts used)",
+  "name": "my-start-page",
+  "version": "0.2.2",
+  "description": "Open source new tab extension (no analytics or 3rd party tracking scripts used)",
   "private": true,
   "engines": {
     "node": ">= 12.x",

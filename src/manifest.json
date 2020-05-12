@@ -1,6 +1,6 @@
 {
   "name": "My Start Page",
-  "description": "Minimalist open source new tab extension (no analytics or 3rd party tracking scripts used)",
+  "description": "Open source new tab extension (no analytics or 3rd party tracking scripts used)",
   "author": "Michael Sprague",
   "short_name": "My Start Page",
   "icons": {
@@ -11,7 +11,7 @@
     "64": "./images/new-tab-icon-64.png",
     "128": "./images/new-tab-icon-128.png"
   },
-  "version": "0.2.1",
+  "version": "0.2.2",
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"
