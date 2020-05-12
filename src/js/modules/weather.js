@@ -1,5 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   clearData,
   getData,
@@ -47,12 +48,14 @@ async function geolocationError(error) {
 const populateHourlyData = (data) => {
   const numHours = 5;
   let hoursMarkup = '';
+  const lastUpdateTime = dayjs(getData('weatherLastUpdated'));
+  dayjs.extend(relativeTime);
   for (let i = 0; i < numHours; i += 1) {
     const currentHour = i + 1;
     const {
-      apparentTemperature,
+      // apparentTemperature,
       icon,
-      summary,
+      // summary,
       temperature,
       time,
     } = data[currentHour];
@@ -68,9 +71,10 @@ const populateHourlyData = (data) => {
     hoursMarkup += hourTemplate;
   }
   const finalMarkup = `
-    <ul class="list-inline border-top">
+    <ul class="list-inline border-top border-bottom border-dark pl-3 pr-3">
       ${hoursMarkup}
     </ul>
+    <p class="text-center mt-n3 mb-0"><small class="weather-last-updated">Last updated ${dayjs().from(lastUpdateTime, true)} ago</small></p>
   `;
   return finalMarkup;
 };
