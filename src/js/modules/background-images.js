@@ -1,6 +1,6 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
+// import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   clearData,
   getData,
@@ -64,12 +64,12 @@ export async function setImageAndMetaData () {
   const imageData = getAllBgImages[bgNum];
   setData('bgCurrent', bgNum);
   const {
-    createdAt,
+    // createdAt,
     title,
     name,
     imageLink,
     imageUrl,
-    imageThumbUrl,
+    // imageThumbUrl,
     userLink,
     userName,
   } = imageData || null;
@@ -82,8 +82,8 @@ export async function setImageAndMetaData () {
     }
     return 'No description available';
   };
-  dayjs.extend(relativeTime);
-  const whenTaken = dayjs().from(createdAt, true);
+  // dayjs.extend(relativeTime);
+  // const whenTaken = dayjs().from(createdAt, true);
   document.body.style.background = `url('${imageUrl}') no-repeat fixed center center`;
   document.body.style.backgroundSize = 'cover';
   const linkSuffix = '?utm_source=My%20Start%20Page&utm_medium=referral';
@@ -96,8 +96,8 @@ export async function setImageAndMetaData () {
     <a href="${userLink}${linkSuffix}" target="_blank" rel="noopener">
       <i class="fad fa-fw fa-user"></i> ${userName}
     </a>
-    via <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopener">Unsplash</a> (posted ${whenTaken} ago)
-  `;
+    via <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopener">Unsplash</a>
+  `; //  (posted ${whenTaken} ago)
 };
 
 export async function rotateBgImage () {
