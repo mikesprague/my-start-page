@@ -4,6 +4,8 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   clearData,
   getData,
+  isCached,
+  isCacheValid,
   setData,
 } from './data';
 import {
@@ -126,14 +128,14 @@ export async function getLocationNameAndWeather(position) {
   const lng = position.coords.longitude;
   const lat = position.coords.latitude;
 
-  const lastUpdated = getData('weatherLastUpdated');
+  const cacheExists = isCached('weatherData');
   let weatherAndLocation = null;
-  if (lastUpdated) {
-    const nextUpdateTime = dayjs(lastUpdated).add(20, 'minute');
-    if (dayjs().isAfter(nextUpdateTime)) {
-      weatherAndLocation = await resetAndGetWeatherData(lat, lng);
-    } else {
+  if (cacheExists) {
+    const cacheValid = isCacheValid('weatherLastUpdated', 20, 'minute');
+    if (cacheValid) {
       weatherAndLocation = getData('weatherData');
+    } else {
+      weatherAndLocation = await resetAndGetWeatherData(lat, lng);
     }
   } else {
     weatherAndLocation = await resetAndGetWeatherData(lat, lng);

@@ -3,6 +3,8 @@ import dayjs from 'dayjs';
 import {
   clearData,
   getData,
+  isCached,
+  isCacheValid,
   setData,
 } from './data';
 import {
@@ -19,56 +21,28 @@ export async function getDesignQuoteData() {
   return designQuoteData;
 }
 
-const normalizeQuoteData = (apiData) => {
-  const returnData = apiData.map((quoteData) => {
-    const {
-      content,
-      excerpt,
-      link: quoteLink,
-      title,
-    } = quoteData || null;
-    const {
-      rendered: quoteExcerpt,
-    } = excerpt;
-    const {
-      rendered: quoteHtml,
-    } = content;
-    const {
-      rendered: quoteAuthor,
-    } = title;
+async function getAndSetQuoteData () {
+  const apiData = await getDesignQuoteData();
+  clearData('quoteData');
+  clearData('quoteLastUpdated');
+  setData('quoteData', apiData);
+  setData('quoteLastUpdated', dayjs());
 
-    return {
-      quoteExcerpt,
-      quoteHtml,
-      quoteAuthor,
-      quoteLink,
-    };
-  });
-  return returnData;
-};
+  return apiData;
+}
 
 export async function getDesignQuote() {
-  const lastUpdated = getData('quoteLastUpdated');
+  const cacheExists = isCached('quoteData');
   let apiData = null;
-  if (lastUpdated) {
-    const nextUpdateTime = dayjs(lastUpdated).add(6, 'hour');
-    if (dayjs().isAfter(nextUpdateTime) || lastUpdated === null) {
-      apiData = await getDesignQuoteData();
-      apiData = normalizeQuoteData(apiData);
-      clearData('quoteData');
-      clearData('quoteLastUpdated');
-      setData('quoteData', apiData);
-      setData('quoteLastUpdated', dayjs());
-    } else {
+  if (cacheExists) {
+    const cacheValid = isCacheValid('quoteLastUpdated', 6, 'hour');
+    if (cacheValid) {
       apiData = getData('quoteData');
+    } else {
+      apiData = await getAndSetQuoteData();
     }
   } else {
-    apiData = await getDesignQuoteData();
-    apiData = normalizeQuoteData(apiData);
-    clearData('quoteData');
-    clearData('quoteLastUpdated');
-    setData('quoteData', apiData);
-    setData('quoteLastUpdated', dayjs());
+    apiData = await getAndSetQuoteData();
   }
 
   return apiData;

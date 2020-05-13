@@ -4,6 +4,8 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   clearData,
   getData,
+  isCached,
+  isCacheValid,
   setData,
 } from './data';
 import {
@@ -20,26 +22,28 @@ export async function getUnsplashImagesData() {
   return bgImagesData;
 }
 
-export async function getUnsplashImage() {
-  const lastUpdated = getData('bgLastUpdated');
+async function getAndSetBgData () {
+  const apiData = await getUnsplashImagesData();
+  clearData('bgData');
+  clearData('bgLastUpdated');
+  setData('bgData', apiData);
+  setData('bgLastUpdated', dayjs());
+
+  return apiData;
+}
+
+export async function getUnsplashImages() {
+  const cacheExists = isCached('bgData');
   let apiData = null;
-  if (lastUpdated) {
-    const nextUpdateTime = dayjs(lastUpdated).add(60, 'minute');
-    if (dayjs().isAfter(nextUpdateTime) || lastUpdated === null) {
-      apiData = await getUnsplashImagesData();
-      clearData('bgData');
-      clearData('bgLastUpdated');
-      setData('bgData', apiData);
-      setData('bgLastUpdated', dayjs());
-    } else {
+  if (cacheExists) {
+    const cacheValid = isCacheValid('bgLastUpdated', 60, 'minute');
+    if (cacheValid) {
       apiData = getData('bgData');
+    } else {
+      apiData = await getAndSetBgData();
     }
   } else {
-    apiData = await getUnsplashImagesData();
-    clearData('bgData');
-    clearData('bgLastUpdated');
-    setData('bgData', apiData);
-    setData('bgLastUpdated', dayjs());
+    apiData = await getAndSetBgData();
   }
 
   return apiData;
@@ -55,7 +59,7 @@ export async function preloadBgImages () {
 }
 
 export async function setImageAndMetaData () {
-  const getAllBgImages = await getUnsplashImage();
+  const getAllBgImages = await getUnsplashImages();
   const bgNum = getData('bgCurrent') || 0;
   const imageData = getAllBgImages[bgNum];
   setData('bgCurrent', bgNum);
@@ -85,16 +89,14 @@ export async function setImageAndMetaData () {
   const linkSuffix = '?utm_source=My%20Start%20Page&utm_medium=referral';
   const bgMetadataEl = document.querySelector('.bg-metadata');
   bgMetadataEl.innerHTML = `
-    <span class="text-muted">
-      <a class="" href="${imageLink}${linkSuffix}" target="_blank" rel="noopener">
-        <i class="fad fa-fw fa-image"></i> ${getImageTitle()} (posted ${whenTaken} ago)
-      </a>
-      <br>
-      <a href="${userLink}${linkSuffix}" target="_blank" rel="noopener">
-        <i class="fad fa-fw fa-user"></i> ${userName}
-      </a>
-      via <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopener">Unsplash</a>
-    </span>
+    <a href="${imageLink}${linkSuffix}" target="_blank" rel="noopener">
+      <i class="fad fa-fw fa-image"></i> ${getImageTitle()} (posted ${whenTaken} ago)
+    </a>
+    <br>
+    <a href="${userLink}${linkSuffix}" target="_blank" rel="noopener">
+      <i class="fad fa-fw fa-user"></i> ${userName}
+    </a>
+    via <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopener">Unsplash</a>
   `;
 };
 
