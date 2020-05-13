@@ -27,6 +27,7 @@ exports.handler = async (event, context, callback) => {
     const returnData = apiData.map((imageData) => {
       const {
         alt_description: altDescription,
+        created_at: createdAt,
         description,
         links,
         location,
@@ -54,6 +55,7 @@ exports.handler = async (event, context, callback) => {
       } = userLinks || null;
       return {
         altDescription,
+        createdAt,
         description,
         title,
         name,
