@@ -1,5 +1,13 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import tippy from 'tippy.js';
+import {
+  clearData,
+  getData,
+  isCached,
+  isCacheValid,
+  setData,
+} from './data';
 import {
   apiUrl,
 } from './helpers';
@@ -31,8 +39,30 @@ export async function getHackerNewsPosts (hackerNewsUrl = `${apiUrl()}/hacker-ne
   return returnData;
 }
 
+async function getAndSetHackerNewsPosts () {
+  const apiData = await getHackerNewsPosts();
+  clearData('hackerNewsData');
+  clearData('hackerNewsLastUpdated');
+  setData('hackerNewsData', apiData);
+  setData('hackerNewsLastUpdated', dayjs());
+
+  return apiData;
+}
+
 export async function getHackerNewsPostsMarkup () {
-  const hackerNewsData = await getHackerNewsPosts();
+  const cacheExists = isCached('hackerNewsData');
+  let hackerNewsData = null;
+  if (cacheExists) {
+    const cacheValid = isCacheValid('hackerNewsLastUpdated', 1, 'hour');
+    if (cacheValid) {
+      hackerNewsData = getData('hackerNewsData');
+    } else {
+      hackerNewsData = await getAndSetHackerNewsPosts();
+    }
+  } else {
+    hackerNewsData = await getAndSetHackerNewsPosts();
+  }
+
   let idx = 0;
   const postsMarkup = hackerNewsData.map(post => {
     const listItemMarkup = `

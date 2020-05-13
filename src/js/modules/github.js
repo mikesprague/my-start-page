@@ -1,5 +1,13 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import tippy from 'tippy.js';
+import {
+  clearData,
+  getData,
+  isCached,
+  isCacheValid,
+  setData,
+} from './data';
 import {
   apiUrl,
 } from './helpers';
@@ -17,8 +25,30 @@ export async function getTrendingRepos (dataUrl = `${apiUrl()}/github-trending-r
   return pageData;
 }
 
+async function getAndSetGitHubData () {
+  const apiData = await getTrendingRepos();
+  clearData('gitHubData');
+  clearData('githubLastUpdated');
+  setData('gitHubData', apiData);
+  setData('githubLastUpdated', dayjs());
+
+  return apiData;
+}
+
 export async function getGitHubReposMarkup () {
-  const gitHubData = await getTrendingRepos();
+  const cacheExists = isCached('gitHubData');
+  let gitHubData = null;
+  if (cacheExists) {
+    const cacheValid = isCacheValid('githubLastUpdated', 1, 'hour');
+    if (cacheValid) {
+      gitHubData = getData('gitHubData');
+    } else {
+      gitHubData = await getAndSetGitHubData();
+    }
+  } else {
+    gitHubData = await getAndSetGitHubData();
+  }
+
   let idx = 0;
   const starsIcon = '<i class="fad fa-fw fa-star"></i>';
   const forksIcon = '<i class="fad fa-fw fa-share-alt fa-rotate-270"></i>';

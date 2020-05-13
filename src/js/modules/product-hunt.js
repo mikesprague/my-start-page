@@ -1,5 +1,13 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import tippy from 'tippy.js';
+import {
+  clearData,
+  getData,
+  isCached,
+  isCacheValid,
+  setData,
+} from './data';
 import {
   apiUrl,
 } from './helpers';
@@ -33,8 +41,30 @@ export async function getProductHuntPosts (productHuntRssUrl = `${apiUrl()}/prod
   return returnData;
 }
 
+async function getAndSetProductHuntPosts () {
+  const apiData = await getProductHuntPosts();
+  clearData('productHuntData');
+  clearData('productHuntLastUpdated');
+  setData('productHuntData', apiData);
+  setData('productHuntLastUpdated', dayjs());
+
+  return apiData;
+}
+
 export async function getProductHuntPostsMarkup () {
-  const productHuntData = await getProductHuntPosts();
+  const cacheExists = isCached('productHuntData');
+  let productHuntData = null;
+  if (cacheExists) {
+    const cacheValid = isCacheValid('productHuntLastUpdated', 1, 'hour');
+    if (cacheValid) {
+      productHuntData = getData('productHuntData');
+    } else {
+      productHuntData = await getAndSetProductHuntPosts();
+    }
+  } else {
+    productHuntData = await getAndSetProductHuntPosts();
+  }
+
   let idx = 0;
   const postsMarkup = productHuntData.map(post => {
     const listItemMarkup = `
