@@ -1,32 +1,61 @@
 import axios from 'axios';
+import dayjs from 'dayjs';
 import tippy from 'tippy.js';
+import {
+  clearData,
+  getData,
+  isCached,
+  isCacheValid,
+  setData,
+} from './data';
+import {
+  apiUrl,
+} from './helpers';
 
-const redditUrlPrefix = 'https://www.reddit.com';
+export async function getRedditPosts() {
+  const redditPostsApiUrl = `${apiUrl()}/reddit-posts`;
+  const redditPostsData = await axios.get(redditPostsApiUrl)
+  .then((response) => {
+    // console.log(response.data);
+    return response.data;
+  });
+  return redditPostsData;
+}
 
-export async function getRedditPosts (redditUrl = `${redditUrlPrefix}/r/popular.json?limit=10`) {
-  const redditData = await axios.get(redditUrl)
-    .then(response => {
-      const { children } = response.data.data;
-      const returnData = children.map(child => {
-        return child.data;
-      });
-      return returnData;
-    });
-    return redditData;
+async function getAndSetRedditPostsData () {
+  const apiData = await getRedditPosts();
+  clearData('redditPostsData');
+  clearData('redditPostsLastUpdated');
+  setData('redditPostsData', apiData);
+  setData('redditPostsLastUpdated', dayjs());
+
+  return apiData;
 }
 
 export async function getRedditPostsMarkup () {
-  const redditData = await getRedditPosts();
+  const cacheExists = isCached('redditPostsData');
+  let redditData = null;
+  if (cacheExists) {
+    const cacheValid = isCacheValid('redditPostsLastUpdated', 1, 'hour');
+    if (cacheValid) {
+      redditData = getData('redditPostsData');
+    } else {
+      redditData = await getAndSetRedditPostsData();
+    }
+  } else {
+    redditData = await getAndSetRedditPostsData();
+  }
+
   let idx = 0;
   const postsMarkup = redditData.map(post => {
     const listItemMarkup = `
       <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white">
-        <a href="${redditUrlPrefix}${post.permalink}" title="View Post: ${post.title}" target="_blank" rel="noopener"><strong>${post.title}</strong></a>
+        <a href="https://www.reddit.com${post.permalink}" title="View Post: ${post.title}" target="_blank" rel="noopener"><strong>${post.title}</strong></a>
         <br>
         <small>
-          <a href="${redditUrlPrefix}/r/${post.subreddit}" title="View Subreddit: /r/${post.subreddit}" target="_blank" rel="noopener">/r/${post.subreddit}</a>
+          <a href="https://www.reddit.com/r/${post.subreddit}" title="View Subreddit: /r/${post.subreddit}" target="_blank" rel="noopener">/r/${post.subreddit}</a>
           &nbsp;&nbsp;
-          <a href="${redditUrlPrefix}/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener"><i class="fad fa-fw fa-user"></i></a> ${post.author}</a>
+          <a href="https://www.reddit.com/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener"><i class="fad fa-fw fa-user"></i></a> ${post.author}</a>
         </small>
       </li>
     `;
@@ -40,7 +69,7 @@ export async function getRedditPostsMarkup () {
         <h5>
           <i class="fab fa-fw fa-reddit-alien"></i> Reddit Popular Posts
           &nbsp;
-          <small><a href="${redditUrlPrefix}/r/popular" title="View on Reddit" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Reddit</a></small>
+          <small><a href="https://www.reddit.com/r/popular" title="View on Reddit" target="_blank" rel="noopener"><i class="fad fa-fw fa-external-link"></i> View on Reddit</a></small>
         </h5>
       </li>
       ${postsMarkup.join('\n')}
