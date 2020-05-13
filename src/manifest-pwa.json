@@ -35,7 +35,7 @@
       "sizes": "128x128"
     }
   ],
-  "version": "0.4.0",
+  "version": "0.5.0",
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"
