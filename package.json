@@ -46,10 +46,10 @@
     "cheerio": "^1.0.0-rc.3",
     "cross-env": "^7.0.2",
     "cssnano": "^4.1.10",
-    "dayjs": "^1.8.26",
+    "dayjs": "^1.8.27",
     "dotenv": "^8.2.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.320.3",
+    "snyk": "^1.321.0",
     "tippy.js": "^6.2.3"
   },
   "devDependencies": {
