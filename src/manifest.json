@@ -1,6 +1,6 @@
 {
   "name": "My Start Page",
-  "description": "Open source new tab extension (no analytics or 3rd party tracking scripts used)",
+  "description": "Open source new tab extension",
   "author": "Michael Sprague",
   "short_name": "My Start Page",
   "icons": {
@@ -21,5 +21,6 @@
     "storage",
     "unlimitedStorage",
     "https://my-start.page/*"
-  ]
+  ],
+  "update_url": "https://my-start.page/extension-updates.xml"
 }

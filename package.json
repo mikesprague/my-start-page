@@ -1,7 +1,7 @@
 {
   "name": "my-start-page",
   "version": "0.5.2",
-  "description": "Open source new tab extension (no analytics or 3rd party tracking scripts used)",
+  "description": "Open source new tab extension",
   "private": true,
   "engines": {
     "node": ">= 12.x",
