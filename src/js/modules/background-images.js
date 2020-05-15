@@ -118,14 +118,8 @@ export function initRotateBgImage () {
   });
 }
 
-export function addBgOverlay () {
-  const bgOverlay = '<div class="photo-overlay">&nbsp;</div>';
-  document.querySelector('body').insertAdjacentHTML('beforeend', bgOverlay);
-}
-
 export async function initBgImages() {
   await setImageAndMetaData();
   initRotateBgImage();
   preloadBgImages();
-  setTimeout(addBgOverlay, 250);
 }
