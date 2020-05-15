@@ -21,6 +21,5 @@
     "storage",
     "unlimitedStorage",
     "https://my-start.page/*"
-  ],
-  "update_url": "https://my-start.page/extension-updates.xml"
+  ]
 }
