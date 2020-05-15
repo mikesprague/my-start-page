@@ -69,7 +69,7 @@ export async function setImageAndMetaData () {
     name,
     imageLink,
     imageUrl,
-    // imageThumbUrl,
+    imageThumbUrl,
     userLink,
     userName,
   } = imageData || null;
@@ -84,8 +84,8 @@ export async function setImageAndMetaData () {
   };
   // dayjs.extend(relativeTime);
   // const whenTaken = dayjs().from(createdAt, true);
-  document.body.style.background = `url('${imageUrl}') no-repeat fixed center center`;
-  document.body.style.backgroundSize = 'cover';
+  document.body.style.background = `url('${imageUrl}') no-repeat fixed center center, url('${imageThumbUrl}') no-repeat fixed center center`;
+  document.body.style.backgroundSize = 'cover, cover';
   const linkSuffix = '?utm_source=My%20Start%20Page&utm_medium=referral';
   const bgMetadataEl = document.querySelector('.bg-metadata');
   bgMetadataEl.innerHTML = `
@@ -118,8 +118,14 @@ export function initRotateBgImage () {
   });
 }
 
+export function addBgOverlay () {
+  const bgOverlay = '<div class="photo-overlay">&nbsp;</div>';
+  document.querySelector('body').insertAdjacentHTML('beforeend', bgOverlay);
+}
+
 export async function initBgImages() {
   await setImageAndMetaData();
   initRotateBgImage();
   preloadBgImages();
+  setTimeout(addBgOverlay, 250);
 }

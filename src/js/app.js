@@ -31,9 +31,9 @@ import {
 } from './modules/weather';
 
 
-const initApp = () => {
+const initApp = async () => {
   initServiceWorker();
-  initBgImages();
+  await initBgImages();
   initClock(5);
   initDesignQuote();
   initWeather();
