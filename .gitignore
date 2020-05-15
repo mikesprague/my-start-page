@@ -129,3 +129,5 @@ public
 # Local Netlify folder
 .netlify
 lambda
+
+*.pem
