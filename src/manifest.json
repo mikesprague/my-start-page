@@ -4,14 +4,14 @@
   "author": "Michael Sprague",
   "short_name": "My Start Page",
   "icons": {
-    "16": "./images/new-tab-icon-16.png",
-    "24": "./images/new-tab-icon-24.png",
-    "32": "./images/new-tab-icon-32.png",
-    "48": "./images/new-tab-icon-48.png",
-    "64": "./images/new-tab-icon-64.png",
-    "128": "./images/new-tab-icon-128.png"
+    "16": "/images/new-tab-icon-16.png",
+    "24": "/images/new-tab-icon-24.png",
+    "32": "/images/new-tab-icon-32.png",
+    "48": "/images/new-tab-icon-48.png",
+    "64": "/images/new-tab-icon-64.png",
+    "128": "/images/new-tab-icon-128.png"
   },
-  "version": "0.5.3",
+  "version": "0.5.4",
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"
