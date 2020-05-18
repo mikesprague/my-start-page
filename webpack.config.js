@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
@@ -10,6 +11,7 @@ const cssnano = require('cssnano');
 const autoprefixer = require('autoprefixer');
 
 const mode = process.env.NODE_ENV;
+const appVersion = process.env.npm_package_version;
 
 const webpackRules = [
   {
@@ -44,8 +46,8 @@ const webpackRules = [
               purgecss({
                 content: ['./src/*.html', './src/js/modules/*.js'],
                 fontFace: true,
-                whitelistPatterns: [/tippy/, /a/, /list-group-item/, /list-group-item-action/, /fa-spin/],
-                whitelistPatternsChildren: [/tippy/, /a/, /list-group-item/, /list-group-item-action/, /fa-spin/],
+                whitelistPatterns: [/tippy/],
+                whitelistPatternsChildren: [/tippy/],
               }),
             ];
           },
@@ -73,14 +75,10 @@ const webpackPlugins = [
     filename: './css/styles.css',
     chunkFilename: './css/[id].css',
   }),
-  new WorkboxPlugin.GenerateSW({
-    clientsClaim: true,
-    skipWaiting: true,
-  }),
   new CopyWebpackPlugin({
     patterns: [
       {
-        from: './src/*.js*',
+        from: './src/*.json',
         to: './',
         flatten: true,
         force: true,
@@ -110,22 +108,16 @@ const webpackPlugins = [
   new CopyWebpackPlugin({
     patterns: [
       {
-        from: './src/manifest.json',
-        to: './',
-        force: true,
-        flatten: true,
-      },
-    ],
-  }),
-  new CopyWebpackPlugin({
-    patterns: [
-      {
         from: './src/fonts/*.woff2',
         to: './fonts',
         flatten: true,
         force: true,
       },
     ],
+  }),
+  new WorkboxPlugin.GenerateSW({
+    clientsClaim: true,
+    skipWaiting: true,
   }),
 ];
 

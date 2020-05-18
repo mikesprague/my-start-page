@@ -7,7 +7,8 @@ import {
   faChrome,
 } from '@fortawesome/free-brands-svg-icons';
 import {
-  faCloudsSun,
+  faImage,
+  faUser,
   faSun,
   faMoonStars,
   faCloudRain,
@@ -16,22 +17,16 @@ import {
   faWind,
   faFog,
   faClouds,
+  faCloudsSun,
   faCloudsMoon,
   faCloudHail,
   faThunderstorm,
-  faImage,
-  faUser,
+  faTornado,
+  faHurricane,
+  faThermometerHalf,
   faHourglassHalf,
   faCode,
-  faCloudShowers,
-  faCloudDrizzle,
-  faCloud,
-  faCloudSun,
-  faCloudMoon,
-  faSunCloud,
-  faMoonCloud,
   faTint,
-  faThermometerHalf,
   faMapMarkerAlt,
   faExternalLink,
   faStar,
@@ -71,7 +66,6 @@ export function apiUrl () {
 
 export function initIcons() {
   library.add(
-    faCloudsSun,
     faImage,
     faUser,
     faGithub,
@@ -80,26 +74,22 @@ export function initIcons() {
     faRedditAlien,
     faSun,
     faMoonStars,
-    faCloudDrizzle,
     faCloudRain,
-    faCloudShowers,
     faCloudSnow,
     faCloudSleet,
-    faSunCloud,
-    faMoonCloud,
     faWind,
     faFog,
-    faCloud,
     faClouds,
+    faCloudsSun,
     faCloudsMoon,
-    faCloudMoon,
-    faCloudSun,
     faCloudHail,
     faThunderstorm,
+    faTornado,
+    faHurricane,
+    faThermometerHalf,
     faHourglassHalf,
     faCode,
     faTint,
-    faThermometerHalf,
     faMapMarkerAlt,
     faExternalLink,
     faStar,
@@ -140,7 +130,7 @@ export function initServiceWorker () {
 };
 
 export function initPwaLinks() {
-  if (!isExtension()){
+  if (!isExtension()) {
     const appTitleEl = document.querySelector('.pwa-link-tooltip');
     const appTitleTooltip = `
       <a href="https://chrome.google.com/webstore/detail/my-start-page/pjmobojmaaemcnoiccepkecplpddaaaa" target="_blank" rel="noopener">
