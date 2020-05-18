@@ -55,7 +55,7 @@ export async function getRedditPostsMarkup () {
         <small>
           <a href="https://www.reddit.com/r/${post.subreddit}" title="View Subreddit: /r/${post.subreddit}" target="_blank" rel="noopener">/r/${post.subreddit}</a>
           &nbsp;&nbsp;
-          <a href="https://www.reddit.com/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener"><i class="fad fa-fw fa-user"></i></a> ${post.author}</a>
+          <a href="https://www.reddit.com/user/${post.author}/" title="View Author Page: ${post.author}" target="_blank" rel="noopener"><i class="fad fa-fw fa-user"></i> ${post.author}</a>
         </small>
       </li>
     `;
