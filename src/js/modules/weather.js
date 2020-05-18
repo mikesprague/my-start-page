@@ -52,6 +52,7 @@ const populateHourlyData = (data) => {
   const numHours = 5;
   let hoursMarkup = '';
   const lastUpdateTime = dayjs(getData(appConfig.weatherLastUpdatedKey));
+  // const nextUpdateTime = dayjs(lastUpdateTime).add(appConfig.weatherCacheTtl, 'minute');
   dayjs.extend(relativeTime);
   for (let i = 0; i < numHours; i += 1) {
     const currentHour = i + 1;

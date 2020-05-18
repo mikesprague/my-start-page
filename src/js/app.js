@@ -37,10 +37,10 @@ import {
 
 const initApp = async () => {
   initServiceWorker();
+  initWeather();
   await initBgImages();
   initClock(appConfig.clockUpdateInterval);
   initDesignQuote();
-  initWeather();
   initRedditPopup();
   initHackerNewsPopup();
   initProductHuntPopup();

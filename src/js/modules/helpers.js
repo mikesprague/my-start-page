@@ -46,25 +46,33 @@ export const appConfig = {
   bgCurrentKey: 'bgCurrent',
   bgDataKey: 'bgData',
   bgLastUpdatedKey: 'bgLastUpdated',
+
   clockUpdateInterval: 5, // 5 seconds
-  gitHubCacheTtl: 60, // 1 hours
+
+  gitHubCacheTtl: 60, // 1 hour
   gitHubDataKey: 'gitHubData',
   gitHubLastUpdatedKey: 'githubLastUpdated',
-  devToCacheTtl: 60, // 1 hours
+
+  devToCacheTtl: 60, // 1 hour
   devToDataKey: 'devToData',
   devToLastUpdatedKey: 'devToLastUpdated',
-  hackerNewsCacheTtl: 60, // 1 hours
+
+  hackerNewsCacheTtl: 60, // 1 hour
   hackerNewsDataKey: 'hackerNewsData',
   hackerNewsLastUpdatedKey: 'hackerNewsLastUpdated',
-  productHuntCacheTtl: 60, // 1 hours
+
+  productHuntCacheTtl: 60, // 1 hour
   productHuntDataKey: 'productHuntData',
   productHuntLastUpdatedKey: 'productHuntLastUpdated',
+
   quoteCacheTtl: 360, // 6 hours
   quoteDataKey: 'quoteData',
   quoteLastUpdatedKey: 'quoteLastUpdated',
-  redditCacheTtl: 60, // 1 hours
+
+  redditCacheTtl: 60, // 1 hour
   redditDataKey: 'redditPostsData',
   redditLastUpdatedKey: 'redditPostsLastUpdated',
+
   weatherCacheTtl: 20, // 20 minutes
   weatherDataKey: 'weatherData',
   weatherLastUpdatedKey: 'weatherLastUpdated',

@@ -82,7 +82,8 @@ export async function setImageAndMetaData () {
     }
     return 'No description available';
   };
-  document.body.style.background = `url('${imageUrl}') no-repeat fixed center center, url('${imageThumbUrl}') no-repeat fixed center center`;
+  document.body.style.background =
+    `url('${imageUrl}') no-repeat fixed center center, url('${imageThumbUrl}') no-repeat fixed center center`;
   document.body.style.backgroundSize = 'cover, cover';
   const linkSuffix = '?utm_source=My%20Start%20Page&utm_medium=referral';
   const bgMetadataEl = document.querySelector('.bg-metadata');
@@ -96,7 +97,7 @@ export async function setImageAndMetaData () {
     </a>
     via <a href="https://unsplash.com/${linkSuffix}" target="_blank" rel="noopener">Unsplash</a>
   `;
-};
+}
 
 export async function rotateBgImage () {
   const currentBgNum = getData(appConfig.bgCurrentKey) || 0;
@@ -107,12 +108,9 @@ export async function rotateBgImage () {
 
 export function initRotateBgImage () {
   const rotateLink = document.querySelector('.rotate-bg');
-  // const rotateIcon = document.querySelector('i.fa-sync-alt');
   rotateLink.addEventListener('click', async (event) => {
     event.preventDefault();
-    // rotateIcon.classList.add('fa-spin');
     await rotateBgImage();
-    // rotateIcon.classList.remove('fa-spin');
   });
 }
 
