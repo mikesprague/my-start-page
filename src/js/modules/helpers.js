@@ -5,6 +5,7 @@ import {
   faProductHunt,
   faRedditAlien,
   faChrome,
+  faDev,
 } from '@fortawesome/free-brands-svg-icons';
 import {
   faImage,
@@ -49,6 +50,9 @@ export const appConfig = {
   gitHubCacheTtl: 60, // 1 hours
   gitHubDataKey: 'gitHubData',
   gitHubLastUpdatedKey: 'githubLastUpdated',
+  devToCacheTtl: 60, // 1 hours
+  devToDataKey: 'devToData',
+  devToLastUpdatedKey: 'devToLastUpdated',
   hackerNewsCacheTtl: 60, // 1 hours
   hackerNewsDataKey: 'hackerNewsData',
   hackerNewsLastUpdatedKey: 'hackerNewsLastUpdated',
@@ -123,6 +127,7 @@ export function initIcons() {
     faCalendar,
     faSyncAlt,
     faChrome,
+    faDev,
   );
   dom.watch();
 }

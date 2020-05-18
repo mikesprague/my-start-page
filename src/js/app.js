@@ -6,6 +6,9 @@ import {
   initClock,
 } from './modules/clock';
 import {
+  initDevToPopup,
+} from './modules/dev-to';
+import {
   initGitHubPopup,
 } from './modules/github';
 import {
@@ -42,6 +45,7 @@ const initApp = async () => {
   initHackerNewsPopup();
   initProductHuntPopup();
   initGitHubPopup();
+  initDevToPopup();
   initIcons();
   initPwaLinks();
   initTooltips();
