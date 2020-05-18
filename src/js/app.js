@@ -12,6 +12,7 @@ import {
   initHackerNewsPopup,
 } from './modules/hacker-news';
 import {
+  appConfig,
   initIcons,
   initPwaLinks,
   initServiceWorker,
@@ -34,7 +35,7 @@ import {
 const initApp = async () => {
   initServiceWorker();
   await initBgImages();
-  initClock(5);
+  initClock(appConfig.clockUpdateInterval);
   initDesignQuote();
   initWeather();
   initRedditPopup();

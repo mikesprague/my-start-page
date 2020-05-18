@@ -10,6 +10,7 @@ import {
 } from './data';
 import {
   apiUrl,
+  appConfig,
 } from './helpers';
 
 export async function getHackerNewsPosts (hackerNewsUrl = `${apiUrl()}/hacker-news-posts`) {
@@ -41,21 +42,21 @@ export async function getHackerNewsPosts (hackerNewsUrl = `${apiUrl()}/hacker-ne
 
 async function getAndSetHackerNewsPosts () {
   const apiData = await getHackerNewsPosts();
-  clearData('hackerNewsData');
-  clearData('hackerNewsLastUpdated');
-  setData('hackerNewsData', apiData);
-  setData('hackerNewsLastUpdated', dayjs());
+  clearData(appConfig.hackerNewsDataKey);
+  clearData(appConfig.hackerNewsLastUpdatedKey);
+  setData(appConfig.hackerNewsDataKey, apiData);
+  setData(appConfig.hackerNewsLastUpdatedKey, dayjs());
 
   return apiData;
 }
 
 export async function getHackerNewsPostsMarkup () {
-  const cacheExists = isCached('hackerNewsData');
+  const cacheExists = isCached(appConfig.hackerNewsDataKey);
   let hackerNewsData = null;
   if (cacheExists) {
-    const cacheValid = isCacheValid('hackerNewsLastUpdated', 1, 'hour');
+    const cacheValid = isCacheValid(appConfig.hackerNewsLastUpdatedKey, appConfig.hackerNewsCacheTtl, 'minute');
     if (cacheValid) {
-      hackerNewsData = getData('hackerNewsData');
+      hackerNewsData = getData(appConfig.hackerNewsDataKey);
     } else {
       hackerNewsData = await getAndSetHackerNewsPosts();
     }

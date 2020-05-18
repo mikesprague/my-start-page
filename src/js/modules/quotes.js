@@ -9,6 +9,7 @@ import {
 } from './data';
 import {
   apiUrl,
+  appConfig,
 } from './helpers';
 
 export async function getDesignQuoteData() {
@@ -23,21 +24,21 @@ export async function getDesignQuoteData() {
 
 async function getAndSetQuoteData () {
   const apiData = await getDesignQuoteData();
-  clearData('quoteData');
-  clearData('quoteLastUpdated');
-  setData('quoteData', apiData);
-  setData('quoteLastUpdated', dayjs());
+  clearData(appConfig.quoteDataKey);
+  clearData(appConfig.quoteLastUpdatedKey);
+  setData(appConfig.quoteDataKey, apiData);
+  setData(appConfig.quoteLastUpdatedKey, dayjs());
 
   return apiData;
 }
 
 export async function getDesignQuote() {
-  const cacheExists = isCached('quoteData');
+  const cacheExists = isCached(appConfig.quoteDataKey);
   let apiData = null;
   if (cacheExists) {
-    const cacheValid = isCacheValid('quoteLastUpdated', 6, 'hour');
+    const cacheValid = isCacheValid(appConfig.quoteLastUpdatedKey, appConfig.quoteCacheTtl, 'minute');
     if (cacheValid) {
-      apiData = getData('quoteData');
+      apiData = getData(appConfig.quoteDataKey);
     } else {
       apiData = await getAndSetQuoteData();
     }

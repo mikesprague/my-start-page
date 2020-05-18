@@ -10,6 +10,7 @@ import {
 } from './data';
 import {
   apiUrl,
+  appConfig,
 } from './helpers';
 
 export async function getRedditPosts() {
@@ -24,21 +25,21 @@ export async function getRedditPosts() {
 
 async function getAndSetRedditPostsData () {
   const apiData = await getRedditPosts();
-  clearData('redditPostsData');
-  clearData('redditPostsLastUpdated');
-  setData('redditPostsData', apiData);
-  setData('redditPostsLastUpdated', dayjs());
+  clearData(appConfig.redditDataKey);
+  clearData(appConfig.redditLastUpdatedKey);
+  setData(appConfig.redditDataKey, apiData);
+  setData(appConfig.redditLastUpdatedKey, dayjs());
 
   return apiData;
 }
 
 export async function getRedditPostsMarkup () {
-  const cacheExists = isCached('redditPostsData');
+  const cacheExists = isCached(appConfig.redditDataKey);
   let redditData = null;
   if (cacheExists) {
-    const cacheValid = isCacheValid('redditPostsLastUpdated', 1, 'hour');
+    const cacheValid = isCacheValid(appConfig.redditLastUpdatedKey, appConfig.redditCacheTtl, 'minute');
     if (cacheValid) {
-      redditData = getData('redditPostsData');
+      redditData = getData(appConfig.redditDataKey);
     } else {
       redditData = await getAndSetRedditPostsData();
     }

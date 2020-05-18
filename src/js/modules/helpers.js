@@ -40,6 +40,32 @@ import {
   resetData,
 } from './data';
 
+export const appConfig = {
+  bgCacheTtl: 60, // 1 hour
+  bgCurrentKey: 'bgCurrent',
+  bgDataKey: 'bgData',
+  bgLastUpdatedKey: 'bgLastUpdated',
+  clockUpdateInterval: 5, // 5 seconds
+  gitHubCacheTtl: 60, // 1 hours
+  gitHubDataKey: 'gitHubData',
+  gitHubLastUpdatedKey: 'githubLastUpdated',
+  hackerNewsCacheTtl: 60, // 1 hours
+  hackerNewsDataKey: 'hackerNewsData',
+  hackerNewsLastUpdatedKey: 'hackerNewsLastUpdated',
+  productHuntCacheTtl: 60, // 1 hours
+  productHuntDataKey: 'productHuntData',
+  productHuntLastUpdatedKey: 'productHuntLastUpdated',
+  quoteCacheTtl: 360, // 6 hours
+  quoteDataKey: 'quoteData',
+  quoteLastUpdatedKey: 'quoteLastUpdated',
+  redditCacheTtl: 60, // 1 hours
+  redditDataKey: 'redditPostsData',
+  redditLastUpdatedKey: 'redditPostsLastUpdated',
+  weatherCacheTtl: 20, // 20 minutes
+  weatherDataKey: 'weatherData',
+  weatherLastUpdatedKey: 'weatherLastUpdated',
+};
+
 export function isExtension () {
   if (window.location.origin.includes('-extension://')) {
     return true;

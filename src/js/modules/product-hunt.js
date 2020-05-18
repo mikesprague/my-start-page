@@ -10,6 +10,7 @@ import {
 } from './data';
 import {
   apiUrl,
+  appConfig,
 } from './helpers';
 
 export async function getProductHuntPosts (productHuntRssUrl = `${apiUrl()}/product-hunt-posts`) {
@@ -43,21 +44,21 @@ export async function getProductHuntPosts (productHuntRssUrl = `${apiUrl()}/prod
 
 async function getAndSetProductHuntPosts () {
   const apiData = await getProductHuntPosts();
-  clearData('productHuntData');
-  clearData('productHuntLastUpdated');
-  setData('productHuntData', apiData);
-  setData('productHuntLastUpdated', dayjs());
+  clearData(appConfig.productHuntDataKey);
+  clearData(appConfig.productHuntLastUpdatedKey);
+  setData(appConfig.productHuntDataKey, apiData);
+  setData(appConfig.productHuntLastUpdatedKey, dayjs());
 
   return apiData;
 }
 
 export async function getProductHuntPostsMarkup () {
-  const cacheExists = isCached('productHuntData');
+  const cacheExists = isCached(appConfig.productHuntDataKey);
   let productHuntData = null;
   if (cacheExists) {
-    const cacheValid = isCacheValid('productHuntLastUpdated', 1, 'hour');
+    const cacheValid = isCacheValid(appConfig.productHuntLastUpdatedKey, appConfig.productHuntCacheTtl, 'minute');
     if (cacheValid) {
-      productHuntData = getData('productHuntData');
+      productHuntData = getData(appConfig.productHuntDataKey);
     } else {
       productHuntData = await getAndSetProductHuntPosts();
     }

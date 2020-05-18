@@ -1,6 +1,5 @@
 import axios from 'axios';
 import dayjs from 'dayjs';
-// import relativeTime from 'dayjs/plugin/relativeTime';
 import {
   clearData,
   getData,
@@ -10,6 +9,7 @@ import {
 } from './data';
 import {
   apiUrl,
+  appConfig,
 } from './helpers';
 
 export async function getUnsplashImagesData() {
@@ -24,21 +24,21 @@ export async function getUnsplashImagesData() {
 
 async function getAndSetBgData () {
   const apiData = await getUnsplashImagesData();
-  clearData('bgData');
-  clearData('bgLastUpdated');
-  setData('bgData', apiData);
-  setData('bgLastUpdated', dayjs());
+  clearData(appConfig.bgDataKey);
+  clearData(appConfig.bgLastUpdatedKey);
+  setData(appConfig.bgDataKey, apiData);
+  setData(appConfig.bgLastUpdatedKey, dayjs());
 
   return apiData;
 }
 
 export async function getUnsplashImages() {
-  const cacheExists = isCached('bgData');
+  const cacheExists = isCached(appConfig.bgDataKey);
   let apiData = null;
   if (cacheExists) {
-    const cacheValid = isCacheValid('bgLastUpdated', 60, 'minute');
+    const cacheValid = isCacheValid(appConfig.bgLastUpdatedKey, appConfig.bgCacheTtl, 'minute');
     if (cacheValid) {
-      apiData = getData('bgData');
+      apiData = getData(appConfig.bgDataKey);
     } else {
       apiData = await getAndSetBgData();
     }
@@ -50,7 +50,7 @@ export async function getUnsplashImages() {
 }
 
 export async function preloadBgImages () {
-  const bgImagesData = getData('bgData');
+  const bgImagesData = getData(appConfig.bgDataKey);
   const bgPromises = bgImagesData.map(bgImageData => {
     const bgImage = axios.get(bgImageData.imageUrl);
     axios.get(bgImageData.imageThumbUrl);
@@ -61,9 +61,9 @@ export async function preloadBgImages () {
 
 export async function setImageAndMetaData () {
   const getAllBgImages = await getUnsplashImages();
-  const bgNum = getData('bgCurrent') || 0;
+  const bgNum = getData(appConfig.bgCurrentKey) || 0;
   const imageData = getAllBgImages[bgNum];
-  setData('bgCurrent', bgNum);
+  setData(appConfig.bgCurrentKey, bgNum);
   const {
     title,
     name,
@@ -99,9 +99,9 @@ export async function setImageAndMetaData () {
 };
 
 export async function rotateBgImage () {
-  const currentBgNum = getData('bgCurrent') || 0;
+  const currentBgNum = getData(appConfig.bgCurrentKey) || 0;
   const nextBgNum = currentBgNum + 1 >= 5 ? 0 : currentBgNum + 1;
-  setData('bgCurrent', nextBgNum);
+  setData(appConfig.bgCurrentKey, nextBgNum);
   await setImageAndMetaData();
 }
 

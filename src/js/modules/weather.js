@@ -10,6 +10,7 @@ import {
 } from './data';
 import {
   apiUrl,
+  appConfig,
   initTooltips,
 } from './helpers';
 
@@ -50,7 +51,7 @@ async function geolocationError(error) {
 const populateHourlyData = (data) => {
   const numHours = 5;
   let hoursMarkup = '';
-  const lastUpdateTime = dayjs(getData('weatherLastUpdated'));
+  const lastUpdateTime = dayjs(getData(appConfig.weatherLastUpdatedKey));
   dayjs.extend(relativeTime);
   for (let i = 0; i < numHours; i += 1) {
     const currentHour = i + 1;
@@ -115,11 +116,11 @@ export function populateWeatherAndLocation(weatherAndLocationData) {
 }
 
 export async function resetAndGetWeatherData(lat, lng) {
-  clearData('weatherData');
-  clearData('weatherLastUpdated');
+  clearData(appConfig.weatherDataKey);
+  clearData(appConfig.weatherLastUpdatedKey);
   const weatherAndLocation = await getWeatherData(lat, lng);
-  setData('weatherData', weatherAndLocation);
-  setData('weatherLastUpdated', dayjs());
+  setData(appConfig.weatherDataKey, weatherAndLocation);
+  setData(appConfig.weatherLastUpdatedKey, dayjs());
 
   return weatherAndLocation;
 }
@@ -128,12 +129,12 @@ export async function getLocationNameAndWeather(position) {
   const lng = position.coords.longitude;
   const lat = position.coords.latitude;
 
-  const cacheExists = isCached('weatherData');
+  const cacheExists = isCached(appConfig.weatherDataKey);
   let weatherAndLocation = null;
   if (cacheExists) {
-    const cacheValid = isCacheValid('weatherLastUpdated', 20, 'minute');
+    const cacheValid = isCacheValid(appConfig.weatherLastUpdatedKey, appConfig.weatherCacheTtl, 'minute');
     if (cacheValid) {
-      weatherAndLocation = getData('weatherData');
+      weatherAndLocation = getData(appConfig.weatherDataKey);
     } else {
       weatherAndLocation = await resetAndGetWeatherData(lat, lng);
     }
@@ -152,8 +153,8 @@ export async function doGeolocation() {
 }
 
 export async function initWeather() {
-  const lastUpdated = getData('weatherLastUpdated');
-  const weatherAndLocation = getData('weatherData');
+  const lastUpdated = getData(appConfig.weatherLastUpdatedKey);
+  const weatherAndLocation = getData(appConfig.weatherDataKey);
 
   if (lastUpdated && weatherAndLocation) {
     const nextUpdateTime = dayjs(lastUpdated).add(20, 'minute');

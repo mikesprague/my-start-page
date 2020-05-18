@@ -10,6 +10,7 @@ import {
 } from './data';
 import {
   apiUrl,
+  appConfig,
 } from './helpers';
 
 export async function getTrendingRepos (dataUrl = `${apiUrl()}/github-trending-repos`) {
@@ -27,21 +28,21 @@ export async function getTrendingRepos (dataUrl = `${apiUrl()}/github-trending-r
 
 async function getAndSetGitHubData () {
   const apiData = await getTrendingRepos();
-  clearData('gitHubData');
-  clearData('githubLastUpdated');
-  setData('gitHubData', apiData);
-  setData('githubLastUpdated', dayjs());
+  clearData(appConfig.gitHubDataKey);
+  clearData(appConfig.gitHubLastUpdatedKey);
+  setData(appConfig.gitHubDataKey, apiData);
+  setData(appConfig.gitHubLastUpdatedKey, dayjs());
 
   return apiData;
 }
 
 export async function getGitHubReposMarkup () {
-  const cacheExists = isCached('gitHubData');
+  const cacheExists = isCached(appConfig.gitHubDataKey);
   let gitHubData = null;
   if (cacheExists) {
-    const cacheValid = isCacheValid('githubLastUpdated', 1, 'hour');
+    const cacheValid = isCacheValid(appConfig.gitHubLastUpdatedKey, appConfig.gitHubCacheTtl, 'minute');
     if (cacheValid) {
-      gitHubData = getData('gitHubData');
+      gitHubData = getData(appConfig.gitHubDataKey);
     } else {
       gitHubData = await getAndSetGitHubData();
     }
