@@ -61,7 +61,7 @@
     "@babel/preset-env": "^7.9.6",
     "@babel/runtime": "^7.9.6",
     "@fullhuman/postcss-purgecss": "^2.2.0",
-    "autoprefixer": "^9.7.6",
+    "autoprefixer": "^9.8.0",
     "babel-loader": "^8.1.0",
     "compression-webpack-plugin": "^4.0.0",
     "concurrently": "^5.2.0",
