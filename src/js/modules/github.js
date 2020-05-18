@@ -70,7 +70,7 @@ export async function getGitHubReposMarkup () {
     const forksMarkup = forks.trim().length ? `<a href="${forksLink}">${forksIcon} ${repo.forks}</a>` : '';
     const listItemMarkup = `
       <li class="list-group-item list-group-item-action ${idx % 2 === 0 ? 'odd' : ''} text-white">
-        <a href="${link}" title="View Post: ${title}" target="_blank" rel="noopener">
+        <a href="${link}" target="_blank" rel="noopener">
           <strong>${title}</strong>
         </a>
         <br>

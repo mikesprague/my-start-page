@@ -149,6 +149,14 @@ a {
     background-color: $color-black;
     border: 0;
     text-align: left;
+
+    a > strong {
+      font-weight: 500;
+    }
+
+    small {
+      font-weight: 300;
+    }
   }
 
   .list-group-item-action {
