@@ -35,7 +35,7 @@
       "sizes": "128x128"
     }
   ],
-  "version": "0.7.1",
+  "version": "0.7.2",
   "manifest_version": 2,
   "chrome_url_overrides": {
     "newtab": "index.html"
@@ -44,7 +44,7 @@
     "geolocation",
     "storage",
     "unlimitedStorage",
-    "https://my-start/page/*"
+    "https://my-start.page/*"
   ],
   "homepage_url": "https://my-start.page/",
   "scope": "/",
