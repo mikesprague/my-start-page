@@ -48,6 +48,7 @@
     "cssnano": "^4.1.10",
     "dayjs": "^1.8.27",
     "dotenv": "^8.2.0",
+    "num-words": "^1.2.0",
     "register-service-worker": "^1.7.1",
     "snyk": "^1.323.0",
     "tippy.js": "^6.2.3"
