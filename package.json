@@ -21,7 +21,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "webpack": "cross-env NODE_ENV=production webpack -p --colors --display minimal",
     "webpack:dev": "cross-env NODE_ENV=development webpack -d --colors --display minimal",
-    "webpack:serve": "cross-env NODE_ENV=development webpack-dev-server --port 4444",
+    "webpack:serve": "cross-env NODE_ENV=development webpack-dev-server --port 4444 --keep-alive-timeout 0",
     "zip": "cd public && zip -r my-start-page.zip ./"
   },
   "keywords": [],
@@ -49,7 +49,7 @@
     "dayjs": "^1.8.27",
     "dotenv": "^8.2.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.323.0",
+    "snyk": "^1.323.2",
     "tippy.js": "^6.2.3"
   },
   "devDependencies": {
