@@ -53,7 +53,6 @@ const initApp = async () => {
 
 document.onreadystatechange = () => {
   if (document.readyState === 'interactive') {
-    // code goes here
     initApp();
   }
 };
