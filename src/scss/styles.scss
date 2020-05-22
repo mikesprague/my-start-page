@@ -10,6 +10,7 @@ $color-light-gray: #ddd;
 $color-black-forty-percent: rgba(0, 0, 0, .4);
 $color-black-sixty-percent: rgba(0, 0, 0, .6);
 $color-black-ninety-percent: rgba(0, 0, 0, .9);
+$color-medium-gray: #454545;
 
 * {
   -moz-osx-font-smoothing: grayscale !important;
@@ -138,7 +139,25 @@ a {
 
 .posts-container {
   max-height: 85vh;
-  overflow-x: scroll;
+  overflow-y: auto;
+  // emerging W3C standard, currently Firefox-only
+  scrollbar-color: $color-medium-gray $color-darker-gray;
+  scrollbar-width: thin;
+
+  // Chrome/Edge/Safari
+  &::-webkit-scrollbar {
+    width: 12px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: $color-medium-gray;
+    border: 3px solid $color-darker-gray;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $color-darker-gray;
+  }
 
   .tippy-content {
     width: 85vw !important;
