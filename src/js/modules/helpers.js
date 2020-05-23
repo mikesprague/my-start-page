@@ -169,24 +169,24 @@ export function initServiceWorker () {
 };
 
 export function initPwaLinks() {
-  if (!isExtension()) {
-    const appTitleEl = document.querySelector('.pwa-link-tooltip');
-    const appTitleTooltip = `
-      <a href="https://chrome.google.com/webstore/detail/my-start-page/pjmobojmaaemcnoiccepkecplpddaaaa" target="_blank" rel="noopener">
-        View/Install in <i class='fab fa-fw fa-chrome'></i> Chrome Store
-      </a>
-    `;
-    appTitleEl.setAttribute('data-tippy-content', appTitleTooltip);
-    appTitleEl.innerHTML = `
-      <a href="https://chrome.google.com/webstore/detail/my-start-page/pjmobojmaaemcnoiccepkecplpddaaaa" target="_blank" rel="noopener">
-        My Start Page
-      </a>
-    `;
-  }
+  // if (!isExtension()) {
+  //   const appTitleEl = document.querySelector('.pwa-link-tooltip');
+  //   const appTitleTooltip = `
+  //     <a href="https://chrome.google.com/webstore/detail/my-start-page/pjmobojmaaemcnoiccepkecplpddaaaa" target="_blank" rel="noopener">
+  //       View/Install in <i class='fab fa-fw fa-chrome'></i> Chrome Store
+  //     </a>
+  //   `;
+  //   appTitleEl.setAttribute('data-tippy-content', appTitleTooltip);
+  //   appTitleEl.innerHTML = `
+  //     <a href="https://chrome.google.com/webstore/detail/my-start-page/pjmobojmaaemcnoiccepkecplpddaaaa" target="_blank" rel="noopener">
+  //       My Start Page
+  //     </a>
+  //   `;
+  // }
   const authorNameEl = document.querySelector('.author-container');
   const authorNameTooltip = `
-    <a href="https://www.github.com/mikesprague/my-start-page" target="_blank" rel="noopener">
-      Source code available on <i class='fab fa-fw fa-github'></i> GitHub
+    <a href="https://github.com/mikesprague/my-start-page" target="_blank" rel="noopener">
+      <i class="fad fa-fw fa-code"></i> Source code available on GitHub <i class='fab fa-fw fa-github'></i>
     </a>
   `;
   authorNameEl.setAttribute('data-tippy-content', authorNameTooltip);
