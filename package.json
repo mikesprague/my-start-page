@@ -50,7 +50,7 @@
     "dotenv": "^8.2.0",
     "num-words": "^1.2.0",
     "register-service-worker": "^1.7.1",
-    "snyk": "^1.332.1",
+    "snyk": "^1.334.0",
     "tippy.js": "^6.2.3"
   },
   "devDependencies": {
